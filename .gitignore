@@ -1,2 +1,5 @@
 node_modules
 *.log
+
+# ignore css files, we store only LESS in the repo
+public/stylesheets/*.css
