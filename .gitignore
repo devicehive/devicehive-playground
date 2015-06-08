@@ -3,3 +3,8 @@ node_modules
 
 # ignore css files, we store only LESS in the repo
 public/stylesheets/*.css
+
+
+# ignore IDE stuff
+.settings
+.idea
