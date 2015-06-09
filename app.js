@@ -41,6 +41,10 @@ app.use(lessMiddleware(path.join(__dirname, 'theme', 'less'), {
     }
   }
 }));
+app.use('/docs', require('./lib/fm-markdown')({
+  directory: path.join(__dirname, 'content/docs'), 
+  view: 'doc'
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
