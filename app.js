@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var lessMiddleware = require('less-middleware');
 var exphbs  = require('express-handlebars');
+var docserver = require('docserver');
 
 var routes = require('./routes/index');
 var pages = require('./routes/pages');
@@ -41,19 +42,18 @@ app.use(lessMiddleware(path.join(__dirname, 'theme', 'less'), {
     }
   }
 }));
-app.use('/docs', require('./lib/fm-markdown')({
-  directory: path.join(__dirname, 'content/docs'), 
-  view: 'doc'
-}));
+app.use(docserver({
+    dir: __dirname + '/content/docs',  // serve Markdown files in the docs directory...
+    url: '/docs/'}                     // ...and serve them from this URL prefix
+));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
 //
-// Routes 
+// Routes
 //
-app.use('/', routes);
-app.use('/', landingPages);
 app.use('/', pages);
+app.use('/', landingPages);
 
 
 //
@@ -83,7 +83,6 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  console.log(err.message);
   res.render('error', {
     message: err.message,
     error: {}
