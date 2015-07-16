@@ -1,4 +1,6 @@
 /// <reference path=".settings/typings/node/node.d.ts"/>
+
+// set up ======================================================================
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -9,16 +11,23 @@ var lessMiddleware = require('less-middleware');
 var exphbs  = require('express-handlebars');
 var docserver = require('docserver');
 
-var routes = require('./routes/index');
+var mongoose = require('mongoose');
+var passport = require('passport');
+var flash = require('flash');
+var session = require('express-session');
+
 var pages = require('./routes/pages');
 var landingPages = require('./routes/landing');
 
 var app = express();
 
 
-//
+// configuration ===============================================================
+var configDB = require('./config/database.js');
+mongoose.connect(configDB.url); // connect to our database
+require('./lib/passport')(passport); // pass passport for configuration
+
 // view engine setup
-//
 var handlebars =  exphbs.create({
   defaultLayout: 'main',
   helpers: require('./lib/helpers/handlebars')
@@ -26,13 +35,10 @@ var handlebars =  exphbs.create({
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
-//
-// More Middleware
-//
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'theme', 'less'), {
   dest: path.join(__dirname, 'public'),
@@ -48,27 +54,27 @@ app.use(docserver({
 ));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// required for passport
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+require('./routes/auth.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
-//
-// Routes
-//
+
+// routes ======================================================================
 app.use('/', pages);
 app.use('/', landingPages);
 
 
-//
-// Error handlers
-//
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
+// error handling ==============================================================
+app.use(function(req, res, next) { // catch 404 and forward to error handler
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
-// development error handler
-// will print stacktrace
+// development error handler - will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
@@ -79,8 +85,7 @@ if (app.get('env') === 'development') {
   });
 }
 
-// production error handler
-// no stacktraces leaked to user
+// production error handler - no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
@@ -88,6 +93,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;
