@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DeviceHive Playground</title>
+
+    <link rel="stylesheet" href="stylesheets/style.css">
+
+    <script src="https://app.userapp.io/js/userapp.client.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="section center">
+
+    <h1>Welcome to DeviceHive Playground</h1>
+
+    <p>Here you can get access to your personal devicehive server hosted on our cloud.</p>
+
+    <p>Use information below to get your access credentials.</p>
+</div>
+
+<div class="section" id="sLogin" style="display: none">
+    <p class="center">Login or Sign Up</p>
+
+    <p class="center">
+        <button onclick="socialLogin('google')">Google</button>
+        <button onclick="socialLogin('github')">GitHub</button>
+        <button onclick="socialLogin('facebook')">Facebook</button>
+    </p>
+    <p class="center">or using playground account</p>
+
+    <form class="form" onsubmit="return signinorup()">
+        <div class="center">
+            <input id="email" type="email" placeholder="Email" required autofocus> <br/>
+            <input id="password" type="password" placeholder="Password" required>
+        </div>
+
+        <p class="center">
+            <button type="submit" onclick="window.signup=false">Log in</button>
+            or
+            <button type="submit" onclick="window.signup=true">Sign Up</button>
+        </p>
+    </form>
+
+</div>
+
+<div class="section center" id="sInfo"  style="display: none">
+    <p>Logged in as <span id="greeting"></span> <a href="javascript:logout()">Logout</a></p>
+
+    <h4>Your Connection Details</h4>
+    <div><strong>Admin Console:</strong> http://playground.devicehive.com/admin</div>
+    <div><strong>API Console:</strong> http://playground.devicehive.com/api/swagger</div>
+    <div><strong>API URL:</strong> http://playground.devicehive.com/spi</div>
+    <div><strong>Access Key:</strong> abcdefghijklmn</div>
+</div>
+
+</body>
+
+<script src="javascripts/index.js"></script>
+
+</html>

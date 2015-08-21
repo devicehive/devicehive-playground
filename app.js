@@ -1,80 +1,88 @@
-/// <reference path=".settings/typings/node/node.d.ts"/>
-
-// set up ======================================================================
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var lessMiddleware = require('less-middleware');
-var exphbs  = require('express-handlebars');
-var docserver = require('docserver');
-
-var mongoose = require('mongoose');
-var passport = require('passport');
-var flash = require('flash');
-var session = require('express-session');
-
-var pages = require('./routes/pages');
-var landingPages = require('./routes/landing');
+var UserApp = require('userapp');
 
 var app = express();
 
-
-// configuration ===============================================================
-var configDB = require('./config/database.js');
-mongoose.connect(configDB.url); // connect to our database
-require('./lib/passport')(passport); // pass passport for configuration
-
 // view engine setup
-var handlebars =  exphbs.create({
-  defaultLayout: 'main',
-  helpers: require('./lib/helpers/handlebars')
-});
-app.engine('handlebars', handlebars.engine);
-app.set('view engine', 'handlebars');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
-app.use(favicon(__dirname + '/public/favicon.ico'));
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(lessMiddleware(path.join(__dirname, 'theme', 'less'), {
-  dest: path.join(__dirname, 'public'),
-  preprocess: {
-    path: function(pathname, req) {
-      return pathname.replace(path.sep + 'stylesheets' + path.sep, path.sep);
-    }
-  }
-}));
-app.use(docserver({
-    dir: __dirname + '/content/docs',  // serve Markdown files in the docs directory...
-    url: '/docs/'}                     // ...and serve them from this URL prefix
-));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// required for passport
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
-require('./routes/auth.js')(app, passport); // load our routes and pass in our app and fully configured passport
+UserApp.initialize({appId:'55d4b6eb20d74'});
+
+function get_or_create_playground(email) {
+
+    // TODO implement me
+
+    return email;
+
+}
 
 
-// routes ======================================================================
-app.use('/', pages);
-app.use('/', landingPages);
+app.get('/info', function(req, res) {
+
+    if (!req.cookies.ua_session_token){
+        res.status(403).send('Access Denied');
+        return;
+    }
 
 
-// error handling ==============================================================
-app.use(function(req, res, next) { // catch 404 and forward to error handler
+    // two operations to follow as we working in same thread
+    UserApp.setToken(req.cookies.ua_session_token);
+    UserApp.User.get({
+    }, function(error, result){
+
+        if (error) {
+            res.status(500).json(error);
+        } else {
+
+            var user = result[0];
+
+            var key = get_or_create_playground(user.email);
+
+            if (user.email && user.email_verified && !user.lock){
+                var info = {
+                    swagger: "http://playground.devicehive.com/api/swagger",
+                    api: "http://playground.devicehive.com/api/swagger",
+                    admin: "http://playground.devicehive.com/admin",
+                    accesskey: key
+                };
+
+                res.json(info);
+            } else {
+                res.status(403).send('Access Denied');
+            }
+
+        }
+    });
+
+});
+
+
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
-// development error handler - will print stacktrace
+// error handlers
+
+// development error handler
+// will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
@@ -85,7 +93,8 @@ if (app.get('env') === 'development') {
   });
 }
 
-// production error handler - no stacktraces leaked to user
+// production error handler
+// no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
