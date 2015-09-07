@@ -29,8 +29,7 @@ function onUserLoaded(user){
     }
 
     $.get( "info", function( data ) {
-        // update info with data from server
-        $("#server_data").text(JSON.stringify(data));
+        $("#server_data").html(data);
     });
 
 }

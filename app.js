@@ -24,39 +24,45 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 UserApp.initialize({ appId: '55d4b6eb20d74' });
 
-
+/**
+ * Main entry point.
+ * The goal is to get the AccessKey by user's email.
+ * 
+ * 1. tries to find the User by the email
+ *    - if found: tries to get its AccessKey and returns it
+ *    - if not found: proceed to step 2
+ * 2. creates a new User, Network and AccessKey
+ *    - if everything went smooth, returns the AccessKey 
+ * 
+ */
 function get_or_create_playground(email) {
-  // TODO implement me
-  // create network, user, token to user
-  
   var api = require('./lib/dh_api.js')(config);
   
   return new Promise(function (fulfill, reject) {
-    api.findUser(email).then(function (foundUser) {
-      console.log('found user = ' + foundUser);
-      if (foundUser)
-        fulfill(foundUser);
+    api.findUserAccessKey(email).then(function (foundAccessKey) {
+      if (foundAccessKey)
+        fulfill(foundAccessKey);
       else
-        return api.createUser(email).then(function (createdUser) {
-          console.log('created user = ' + createdUser);
-          if (createdUser)
-            fulfill(createdUser);
+        return api.createAndInitUser(email).then(function (createdAccessKey) {
+          if (createdAccessKey)
+            fulfill(createdAccessKey);
           else
-            reject("Can't create user");
+            reject("Can't create and init a User");
         });
     })
   });
 }
 
-
+/**
+ * Async call handler.
+ * Called from public/javascripts/index.js (onUserLoaded)
+ */
 app.get('/info', function (req, res) {
-  
   if (!req.cookies.ua_session_token) {
     res.status(403).send('Access Denied');
     return;
   }
-  
-  
+
   // two operations to follow as we working in same thread
   UserApp.setToken(req.cookies.ua_session_token);
   UserApp.User.get({}, function (error, result) {
@@ -67,16 +73,16 @@ app.get('/info', function (req, res) {
       var user = result[0];
       
       var promise = get_or_create_playground(user.email);
-      promise.then(function (key) {
+      promise.then(function (accessKey) {
         if (user.email && user.email_verified && !user.lock) {
           var info = {
-            swagger: "http://playground.devicehive.com/api/swagger",
-            api: "http://playground.devicehive.com/api/swagger",
-            admin: "http://playground.devicehive.com/admin",
-            accesskey: JSON.stringify(key)
+            swagger: config.swagger_url,
+            api: config.api_url,
+            admin: config.admin_url,
+            accessKey: accessKey.key
           };
           
-          res.json(info);
+          res.render('info', info);
         } else {
           res.status(403).send('Access Denied');
         }

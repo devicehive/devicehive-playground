@@ -29,6 +29,7 @@
     <Compile Include="lib\dh_api.js" />
     <Compile Include="public\javascripts\index.js" />
     <Content Include="public\stylesheets\style.css" />
+    <Content Include="views\info.ejs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin" />
