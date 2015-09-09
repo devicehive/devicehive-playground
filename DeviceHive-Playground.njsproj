@@ -21,6 +21,7 @@
   <ItemGroup>
     <Content Include="diagram.png" />
     <Content Include="package.json" />
+    <Content Include="public\images\spin.svg" />
     <Content Include="README.md" />
     <Compile Include="app.js" />
     <Content Include="public\index.html" />
@@ -36,6 +37,7 @@
     <Folder Include="config\" />
     <Folder Include="lib\" />
     <Folder Include="public" />
+    <Folder Include="public\images\" />
     <Folder Include="public\javascripts" />
     <Folder Include="public\stylesheets" />
     <Folder Include="views" />
