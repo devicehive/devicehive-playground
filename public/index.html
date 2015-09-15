@@ -1,67 +1,85 @@
 ﻿<!doctype html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeviceHive Playground</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-    <title>DeviceHive Playground</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/jquery.qtip.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/login-styles.css">
 
-    <link rel="stylesheet" href="stylesheets/style.css">
-
-    <script src="https://app.userapp.io/js/userapp.client.js"></script>
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <script src="https://app.userapp.io/js/userapp.client.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
 </head>
 
 <body>
 
-<div class="section center">
 
-    <h1>Welcome to DeviceHive Playground</h1>
+  <div id="loginModal" class="login-modal">
+    <div class="modal-content">
+      <div class="container">
+        <h2>Welcome to DeviceHive Playground</h2>
 
-    <p>Here you can get access to your personal devicehive server hosted on our cloud.</p>
+        <p class="comment">
+          Here you can get access <br class="break">to your DeviceHive server hosted on our cloud.<br>
+          Use information below to get your access credentials.
+        </p>
 
-    <p>Use information below to get your access credentials.</p>
-</div>
-
-<div class="section" id="sLogin" style="display: none">
-    <p class="center">Login or Sign Up</p>
-
-    <p class="center">
-        <button onclick="socialLogin('google')">Google</button>
-        <button onclick="socialLogin('github')">GitHub</button>
-        <button onclick="socialLogin('facebook')">Facebook</button>
-    </p>
-    <p class="center">or using playground account</p>
-
-    <form class="form" onsubmit="return signinorup()">
-        <div class="center">
-            <input id="email" type="email" placeholder="Email" required autofocus> <br/>
-            <input id="password" type="password" placeholder="Password" required>
+        <div class="modal-container" id="sLogin" style="display: none">
+          <h3>Login or Sign Up</h3>
+          <ul class="login-social">
+            <li>
+              <a href="#" onclick="socialLogin('google')">
+                <span class="icon hex red"><i class="fa fa-google"></i></span>
+              </a>
+            </li>
+            <li>
+              <a href="#" onclick="socialLogin('github')">
+                <span class="icon hex light-blue"><i class="fa fa-github"></i></span>
+              </a>
+            </li>
+            <li>
+              <a href="#" onclick="socialLogin('facebook')">
+                <span class="icon hex navy"><i class="fa fa-facebook"></i></span>
+              </a>
+            </li>
+          </ul>
+          <p>or using playground account</p>
+          <form class="form" onsubmit="return signinorup()">
+            <input id="email" name="email" type="email" class="modal-input rounded" placeholder="Email" required autofocus> <br />
+            <input id="password" name="email" type="password" placeholder="Password" class="modal-input rounded" required>
+            <div class="button-container clearfix">
+              <button type="submit" id="loginBtn" onclick="window.signup = false" class="modal-button rounded login-btn">Log in</button>
+              <span>or</span>
+              <button type="submit" id="signupBtn" onclick="window.signup = true" class="modal-button rounded sign-up-btn">Sign Up</button>
+            </div>
+          </form>
         </div>
 
-        <p class="center">
-            <button type="submit" onclick="window.signup=false">Log in</button>
-            or
-            <button type="submit" onclick="window.signup=true">Sign Up</button>
-        </p>
-    </form>
+        <div class="section center" id="sInfo" style="display: none">
+          <p>
+            Logged in as <span id="greeting"></span> <a href="javascript:logout()" class="logout-link">Logout</a>
+          </p>
 
-</div>
+          <h4>Your Connection Details</h4>
+          <div id="server_data">
+            <img src="img/spin.svg" alt="Loading..." />
+          </div>
+        </div>
 
-<div class="section center" id="sInfo"  style="display: none">
-    <p>Logged in as <span id="greeting"></span> <a href="javascript:logout()">Logout</a></p>
-
-    <h4>Your Connection Details</h4>
-    <div id="server_data">
-			<img src="images/spin.svg" alt="Loading..." />
-		</div>
-</div>
+      </div>
+    </div>
+  </div>
 
 </body>
 
-<script src="javascripts/index.js"></script>
+<script src="js/index.js"></script>
 
 </html>

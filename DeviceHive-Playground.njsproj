@@ -21,15 +21,15 @@
   <ItemGroup>
     <Content Include="diagram.png" />
     <Content Include="package.json" />
-    <Content Include="public\images\spin.svg" />
+    <Content Include="public\img\spin.svg" />
     <Content Include="README.md" />
     <Compile Include="app.js" />
     <Content Include="public\index.html" />
     <Content Include="views\error.ejs" />
     <Compile Include="config\api.js" />
     <Compile Include="lib\dh_api.js" />
-    <Compile Include="public\javascripts\index.js" />
-    <Content Include="public\stylesheets\style.css" />
+    <Compile Include="public\js\index.js" />
+    <Content Include="public\css\style.css" />
     <Content Include="views\info.ejs" />
   </ItemGroup>
   <ItemGroup>
@@ -37,9 +37,9 @@
     <Folder Include="config\" />
     <Folder Include="lib\" />
     <Folder Include="public" />
-    <Folder Include="public\images\" />
-    <Folder Include="public\javascripts" />
-    <Folder Include="public\stylesheets" />
+    <Folder Include="public\img\" />
+    <Folder Include="public\js\" />
+    <Folder Include="public\css\" />
     <Folder Include="views" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
