@@ -79,6 +79,7 @@
     display: inline-block;
     height: 60px;
     border-radius: 28px;
+    border-width: 0px;
     margin-top: 20px;
     padding: 0 20px;
     box-sizing: border-box;
