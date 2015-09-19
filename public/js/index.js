@@ -30,6 +30,8 @@ function onUserLoaded(user){
 
     $.get( "info", function( data ) {
         $("#server_data").html(data);
+    }).fail(function(res) {
+        $("#server_data").text(res.responseText);
     });
 
 }

@@ -79,13 +79,16 @@ app.get('/info', function (req, res) {
             swagger: config.swagger_url,
             api: config.api_url,
             admin: config.admin_url,
-            accessKey: accessKey.key
+            accessKey: accessKey.key,
+            accessKeyEncoded: encodeURIComponent(accessKey.key)
           };
           
           res.render('info', info);
         } else {
           res.status(403).send('Access Denied');
         }
+      }, function(err){
+        res.status(500).send(err);
       });
     }
   });
