@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var app = require('./server.js');
 var debug = require('debug')('playground:server');
 var http = require('http');
 
