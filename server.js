@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var url = require('url');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -49,7 +50,9 @@ function get_or_create_playground(email) {
           else
             reject("Can't create and init a User");
         });
-    })
+    }, function(err){
+      reject(err);
+    });
   });
 }
 
@@ -68,24 +71,28 @@ app.get('/info', function (req, res) {
   UserApp.User.get({}, function (error, result) {
     if (error) {
       res.status(500).json(error);
-    } 
-    else {
+    } else {
       var user = result[0];
       
       var promise = get_or_create_playground(user.email);
       promise.then(function (accessKey) {
-        if (user.email && user.email_verified && !user.lock) {
-          var info = {
-            swagger: config.swagger_url,
-            api: config.api_url,
-            admin: config.admin_url,
-            accessKey: accessKey.key,
-            accessKeyEncoded: encodeURIComponent(accessKey.key)
-          };
-          
-          res.render('info', info);
-        } else {
-          res.status(403).send('Access Denied');
+        try{
+          if (user.email && user.email_verified && !user.lock) {
+            var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;            
+            var info = {
+              swagger: url.resolve(fullUrl, config.swagger_url),
+              api: url.resolve(fullUrl, config.api_url),
+              admin: url.resolve(fullUrl, config.admin_url),
+              accessKey: accessKey.key,
+              accessKeyEncoded: encodeURIComponent(accessKey.key)
+            };
+            res.render('info', info);
+            
+          } else {
+            res.status(403).send('Access Denied');
+          }
+        } catch(err){
+          res.status(500).send(err);
         }
       }, function(err){
         res.status(500).send(err);
