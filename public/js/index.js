@@ -56,7 +56,7 @@ function checkUser(){
             if (user) {
                 onUserLoaded(user);
             } else {
-                $.cookie("removeCookie");
+                $.removeCookie("ua_session_token);
                 onUserMissing();
             }
         });
