@@ -56,6 +56,7 @@ function checkUser(){
             if (user) {
                 onUserLoaded(user);
             } else {
+                $.cookie("removeCookie");
                 onUserMissing();
             }
         });
