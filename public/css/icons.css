@@ -1,0 +1,34 @@
+@font-face {
+    font-family: 'DeviceHiveIconsFont';
+    font-weight: normal;
+    font-style: normal;
+    src: url('../fonts/DeviceHiveIconsFont.otf') format('truetype'),
+         url('../fonts/DeviceHiveIconsFont.woff') format('woff');
+}
+
+[class^='i-f-'],
+[class*='i-f-'] {
+    font-family: 'DeviceHiveIconsFont';
+    font-weight: normal;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    text-transform: none;
+    speak: none;
+    -webkit-backface-visibility: visible;
+    backface-visibility: visible;
+}
+
+.i-f-google-plus:before {
+    content: "\e800";
+}
+.i-f-hex:before {
+    content: "\e801";
+}
+
+.i-f-delete:before {
+    content: "\e802";
+}
