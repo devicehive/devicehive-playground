@@ -67,55 +67,67 @@
 .close-modal-button {
     width: 48px;
     height: 56px;
+    font-size: 56px;
     position: absolute;
-    top: -25px;
+    top: -29px;
     right: -24px;
-    background: url("../img/close-button.png") left top no-repeat;
     background-size: contain;
     cursor: pointer;
 }
-
-.rounded {
-    display: inline-block;
-    height: 60px;
-    border-radius: 28px;
-    border-width: 0px;
-    margin-top: 20px;
-    padding: 0 20px;
-    box-sizing: border-box;
-    font: 400 20px/60px 'Open Sans', Arial, Helvetica, sans-serif;
+.close-modal-button span {
+    color: #2852a9;
+    position: relative;
+}
+.close-modal-button:hover span {
+    color: #416dc9;
 }
 
-.modal-button {
-    width: 210px;
+.close-modal-button i {
+    font-size: 32px;
+    line-height: 56px;
+}
+
+span[class^='i-f-'],
+span[class*='i-f-'] {
+    position: relative;
+}
+
+span[class^='i-f-'] i[class^='i-f-'],
+span[class*='i-f-'] i[class^='i-f-'],
+span[class*='i-f-'] i[class*='fa-'] {
+    position: absolute;
     color: #fff;
-    background: #ff671b;
-    font-weight: 600;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
 }
 
-.modal-button:hover {
-    text-decoration: underline;
+.login-social .icon {
+    font-size: 84px;
 }
 
+.login-social .icon i {
+    font-size: 32px;
+    line-height: 84px;
+}
+
+.icon.google-bg{color: #dd4b39;}
+.icon.github-bg{color: #9cdaf0;}
+.icon.facebook-bg{color: #3b5998;}
+.icon.email-bg{color: #e47c01;}
+.icon.linkedin-bg{color: #0077b5;}
+.icon.twitter-bg{color: #55acee;}
+
+.button-container {
+    margin-top: 20px;
+}
 .modal-input {
     border: 1px solid #d1d1d1;
     color: #333;
-    font-style: italic;
     width: 100%;
     min-width: 210px;
-}
-
-.modal-input::-webkit-input-placeholder {
-    color: #333;
-}
-.modal-input::-moz-placeholder {
-    color: #333;
-}
-.modal-input:-moz-placeholder {
-    color: #333;
-}
-.modal-input:-ms-input-placeholder {
-    color: #333;
+    margin-bottom: 20px;
 }
 
 .sign-up-modal,
@@ -204,9 +216,16 @@
 .login-modal .comment {
     margin: 20px 0 50px;
 }
+.login-btn,
+.sign-up-btn {
+    min-width: 210px;
+}
+
+.login-modal .sign-up-btn {
+    float: right;
+}
 
 .login-modal .login-btn {
-    background: #1284e3;
     float: left;
 }
 
@@ -214,86 +233,12 @@
     height: 60px;
     display: inline-block;
     line-height: 60px;
-    margin-top: 20px;
     font-style:italic;
-}
-
-.login-modal .sign-up-btn {
-    float: right;
-}
-.login-social {
-    list-style: none;
-}
-
-.login-social li {
-    height: 84px;
-    margin: 0 15px;
-    display: inline-block;
-}
-
-.icon {
-    color: #fff;
-    font-size: 44px;
-}
-
-.icon.hex {
-    width: 76px;
-    height: 44px;
-    background: #2852a9;
-    position: relative;
-    top: 20px;
-    display: inline-block;
-}
-.icon.hex:before {
-    content: "";
-    position: absolute;
-    top: -20px;
-    left: 0;
-    width: 0;
-    height: 0;
-    border-left: 38px solid transparent;
-    border-right: 38px solid transparent;
-    border-bottom: 20px solid #2852a9;
-}
-.icon.hex:after {
-    content: "";
-    position: absolute;
-    bottom: -20px;
-    left: 0;
-    width: 0;
-    height: 0;
-    border-left: 38px solid transparent;
-    border-right: 38px solid transparent;
-    border-top: 20px solid #2852a9;
-}
-
-.icon.hex.red{background: #dd4b39;}
-.icon.hex.red:before,
-.icon.hex.red:after {
-    border-top-color: #dd4b39;
-    border-bottom-color: #dd4b39;
-}
-
-.icon.hex.light-blue{background: #9cdaf0;}
-.icon.hex.light-blue:before,
-.icon.hex.light-blue:after {
-    border-top-color: #9cdaf0;
-    border-bottom-color: #9cdaf0;
-}
-
-.icon.navy{background: #3b5998;}
-.icon.navy:before,
-.icon.navy:after {
-    border-top-color: #3b5998;
-    border-bottom-color: #3b5998;
 }
 
 .break {
     display: none;
 }
-
-.logout-link, #server_data a { color: #2852A9; }
-.logout-link {font-weight: bold;}
 
 @media screen and (max-width: 1650px) {
     .login-modal {
