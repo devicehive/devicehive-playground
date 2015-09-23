@@ -26,21 +26,21 @@
             <p class="comment">Here you can get access <br class="break" />to your DeviceHive server hosted on our cloud.<br />
                 Use information below to get your access credentials.</p>
 
-            <div class="modal-container">
+        <div class="modal-container" id="sLogin" style="display: none">
                 <h3>Login or Sign Up</h3>
                 <ul class="social login-social">
                     <li>
-                        <a href="#">
+              <a href="#" onclick="socialLogin('google')">
                             <span class="icon i-f-hex google-bg"><i class="i-f-google-plus"></i></span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+              <a href="#" onclick="socialLogin('github')">
                             <span class="icon i-f-hex github-bg"><i class="fa fa-github"></i></span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+              <a href="#" onclick="socialLogin('facebook')">
                             <span class="icon i-f-hex facebook-bg"><i class="fa fa-facebook"></i></span>
                         </a>
                     </li>
@@ -74,6 +74,6 @@
 </div>
 </body>
 
-<script src="js/index.js"></script>
+<!--<script src="js/index.js"></script>-->
 
 </html>
