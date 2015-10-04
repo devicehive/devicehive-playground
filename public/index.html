@@ -48,12 +48,12 @@
                 <p>or using playground account</p>
                 <form class="form" onsubmit="return signinorup()">
 
-                <input class="modal-input" type="text" name="email" placeholder="Email">
-                <input class="modal-input" type="password" name="password" placeholder="Password">
+                <input class="modal-input" type="text" id="email" placeholder="Email" required>
+                <input class="modal-input" type="password" id="password" placeholder="Password" required>
                 <div class="button-container clearfix">
-                    <a href="#" class="btn04 login-btn" id="loginBtn" onclick="window.signup = false">Log in</a>
+                    <button type="submit" class="btn04 login-btn" id="loginBtn" onclick="window.signup = false">Log in</button>
                     <span>or</span>
-                    <a href="#" class="btn03 sign-up-btn" id="signupBtn" onclick="window.signup = true">Sign Up</a>
+                    <button type="submit" class="btn03 sign-up-btn" id="signupBtn" onclick="window.signup = true">Sign Up</button>
                 </div>
                 </form>
 

@@ -103,13 +103,24 @@ ul.menu a:hover {
 .btn03,
 .btn04,
 input[type=text],
-input[type=password] {
+input[type=password],
+input[type=email],
+input[type=submit],
+textarea {
     display: inline-block;
     border-radius:28px;
     font: 20px/60px 'Open Sans', Arial, Helvetica, sans-serif;
     box-sizing: border-box;
     padding: 0 15px;
     height: 60px;
+}
+
+input[type=button],
+input[type=submit],
+input[type=reset],
+input[type=file],
+button {
+	border-width: 0px;
 }
 
 input[type=text],

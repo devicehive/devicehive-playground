@@ -1,4 +1,5 @@
 ﻿var envexpand = function(str){
+    if (!str) return str;
 	return str.replace(/\$([A-Za-z0-9_\-]+)/g, function(_,n) {
     	return process.env[n];
     });
