@@ -1,6 +1,6 @@
 {
   "name": "playground",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node ./app.js"
@@ -11,10 +11,13 @@
     "debug": "~2.2.0",
     "ejs": "~2.3.3",
     "express": "~4.13.1",
+    "hashids": "^1.0.2",
+    "lodash": "^3.10.1",
     "morgan": "~1.6.1",
     "promise": "^7.0.4",
-    "request": "^2.61.0",
+    "request-promise": "^0.4.3",
     "serve-favicon": "~2.3.0",
     "userapp": "^2.0.0"
-  }
+  },
+  "license": "MIT"
 }
