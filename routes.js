@@ -17,26 +17,6 @@ var api = require('./lib/dh_api.js')(config);
  *    - if everything went smooth, returns the AccessKey
  *
  */
-var get_or_create_playground = function (email) {
-
-
-    return new Promise(function (fulfill, reject) {
-        api.findUserAccessKey(email).then(function (foundAccessKey) {
-            if (foundAccessKey)
-                fulfill(foundAccessKey);
-            else
-                return api.createAndInitUser(email).then(function (createdAccessKey) {
-                    if (createdAccessKey)
-                        fulfill(createdAccessKey);
-                    else
-                        reject("Can't create and init a User");
-                });
-        }, function (err) {
-            reject(err);
-        });
-    });
-};
-
 
 module.exports.info = function (req, res) {
 
@@ -46,9 +26,6 @@ module.exports.info = function (req, res) {
 
     var callback = {
         success: function (data) {
-            //console.log(data);
-            //res.render('info', data);
-            //res.json(data);
 
             try{
                 if (data.email && !data.user.status) {
@@ -83,30 +60,6 @@ module.exports.info = function (req, res) {
         .then(api.getAccessKey)
         .then(callback.success)
         .catch(callback.error);
-
-    //var promise = get_or_create_playground(user.email);
-    //promise.then(function (accessKey) {
-    //    try{
-    //        if (user.email && user.email_verified && !user.lock) {
-    //            var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-    //            var info = {
-    //                swagger: url.resolve(fullUrl, config.swagger_url),
-    //                api: url.resolve(fullUrl, config.api_url),
-    //                admin: url.resolve(fullUrl, config.admin_url),
-    //                accessKey: accessKey.key,
-    //                accessKeyEncoded: encodeURIComponent(accessKey.key)
-    //            };
-    //            res.render('info', info);
-    //
-    //        } else {
-    //            res.status(403).send('Access Denied');
-    //        }
-    //    } catch(err){
-    //        res.status(500).send(err);
-    //    }
-    //}, function(err){
-    //    res.status(500).send(err);
-    //});
 
 
 };
