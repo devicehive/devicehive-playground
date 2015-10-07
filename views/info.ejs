@@ -1,10 +1,30 @@
-﻿<div><strong>Admin Console:</strong>&nbsp;
-	<a target="_blank" href="<%= admin %>?deviceHiveToken=<%= accessKeyEncoded %>"><%= admin %></a>
-</div>
-<div><strong>API Console:</strong>&nbsp;
-	<a target="_blank" href="<%= swagger %>"><%= swagger %></a>
-</div>
+﻿
 <div><strong>API URL:</strong>&nbsp;
-	<a target="_blank" href="<%= api %>"><%= api %></a>
+    <a target="_blank" href="<%= api %>"><%= api %></a>
 </div>
 <div><strong>Access Key:</strong>&nbsp;<%= accessKey %></div>
+<br/>
+<div><strong>Network Name:</strong>&nbsp;<%= network.name %></div>
+<% if (network.key) { %>
+<div><strong>Network Key:</strong>&nbsp;<%= network.key %></div>
+<% } %>
+
+
+<br/>
+
+<div><strong>Admin Console:</strong>&nbsp;
+    <a target="_blank" href="<%= admin %>?deviceHiveToken=<%= accessKeyEncoded %>"><%= admin %></a>
+</div>
+<div><strong>API Console:</strong>&nbsp;
+    <a target="_blank" href="<%= swagger %>"><%= swagger %></a>
+</div>
+
+<br/>
+
+<h5 style="text-align: left">Register Device using cURL:</h5>
+<code style="display:block;white-space:pre-wrap; text-align: left">curl -X PUT
+    -H "Authorization: Bearer <%= accessKey %>"
+    -H "Content-Type: application/json"
+    -d '{"name" : "unique-device-name", "deviceClass": {"name" : "default device", "version": "1.0"}}'
+    '<%= api %>/device/unique-device-name'
+</code>
