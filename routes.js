@@ -50,7 +50,7 @@ module.exports.info = function (req, res) {
         },
         error: function (data) {
             console.log(data);
-            res.status(500).send(data);
+            res.status(500).send({error:data.message});
         }
     };
 
