@@ -88,7 +88,7 @@ function verify_email(token) {
         "email_token": token
     }, function(error, result){
         if (error){
-            alert(error);
+            alert(error.message ? error.message : JSON.stringify(error));
         } else {
             alert("Email verified! You can now login.");
         }
