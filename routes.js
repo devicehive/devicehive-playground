@@ -56,8 +56,9 @@ module.exports.info = function (req, res) {
 
 
     api.getUserByEmail(req.user.email)
-        .then(api.getNetwork)
         .then(api.getAccessKey)
+        .then(api.getNetwork)
+        .then(api.assignNetwork)
         .then(callback.success)
         .catch(callback.error);
 
