@@ -38,6 +38,7 @@ module.exports.info = function (req, res) {
                         accessKeyEncoded: encodeURIComponent(data.accessKey.key),
                         network: data.network
                     };
+                    res.cookie('DeviceHiveToken', data.accessKey.key);
                     res.render('info', info);
 
                 } else {
