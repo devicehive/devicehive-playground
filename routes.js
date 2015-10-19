@@ -34,6 +34,7 @@ module.exports.info = function (req, res) {
                         swagger: url.resolve(fullUrl, config.swagger_url),
                         api: url.resolve(fullUrl, config.api_url),
                         admin: url.resolve(fullUrl, config.admin_url),
+                        dashboard:url.resolve(fullUrl, config.dashboard_url),
                         accessKey: data.accessKey.key,
                         accessKeyEncoded: encodeURIComponent(data.accessKey.key),
                         network: data.network
