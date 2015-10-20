@@ -25,9 +25,9 @@
 <br/>
 
 <h5 style="text-align: left">Register Device using cURL:</h5>
-<code style="display:block;white-space:pre-wrap; text-align: left">curl -X PUT
-    -H "Authorization: Bearer <%= accessKey %>"
-    -H "Content-Type: application/json"
+<code style="display:block;white-space:pre-wrap; text-align: left">curl -X PUT \
+    -H "Authorization: Bearer <%= accessKey %>" \
+    -H "Content-Type: application/json" \
     -d '{"name" : "unique-device-name", "deviceClass": {"name" : "default device", "version": "1.0"}}'
     '<%= api %>/device/unique-device-name'
 </code>
