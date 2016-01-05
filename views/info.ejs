@@ -33,6 +33,6 @@
 <code style="display:block;white-space:pre-wrap; text-align: left">curl -X PUT \
     -H "Authorization: Bearer <%= accessKey %>" \
     -H "Content-Type: application/json" \
-    -d '{"name" : "unique-device-name", "deviceClass": {"name" : "default device", "version": "1.0"}}'
+    -d '{"name" : "unique-device-name", "deviceClass": {"name" : "default device", "version": "1.0"}}' \
     '<%= api %>/device/unique-device-name'
 </code>
