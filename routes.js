@@ -5,6 +5,7 @@
 var url = require('url');
 var config = require('./config/api.js');
 var api = require('./lib/dh_api.js')(config);
+var faker = require('faker');
 
 /**
  * Main entry point.
@@ -37,7 +38,8 @@ module.exports.info = function (req, res) {
                         dashboard:url.resolve(fullUrl, config.dashboard_url),
                         accessKey: data.accessKey.key,
                         accessKeyEncoded: encodeURIComponent(data.accessKey.key),
-                        network: data.network
+                        network: data.network,
+                        uniqueDeviceName: faker.internet.domainWord() + '-' + faker.random.number()
                     };
                     res.cookie('DeviceHiveToken', data.accessKey.key);
                     res.render('info', info);
