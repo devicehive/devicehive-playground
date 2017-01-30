@@ -37,6 +37,7 @@ module.exports.info = function (req, res) {
                         dashboard:url.resolve(fullUrl, config.dashboard_url),
                         accessToken: data.jwt.accessToken,
                         refreshToken: data.jwt.refreshToken,
+                        accessTokenEncoded: encodeURIComponent(data.jwt.accessToken),
                         network: data.network,
                         uniqueDeviceName: faker.internet.domainWord() + '-' + faker.random.number()
                     };
