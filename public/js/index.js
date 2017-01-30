@@ -15,7 +15,6 @@ function getCurrentUser(callback) {
     });
 }
 
-
 function onUserLoaded(user){
     $('#sLogin').hide();
     $('#sInfo').show();
@@ -98,7 +97,6 @@ function verify_email(token) {
 
 
 $( document ).ready(function() {
-
     var matches = window.location.href.match(/ua_token=([a-z0-9_-]+)/i);
     if (matches && matches.length == 2) {
         var token = matches[1];

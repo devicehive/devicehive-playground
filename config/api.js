@@ -13,7 +13,7 @@ module.exports = {
     swagger_url: envexpand(process.env.DH_SWAGGER_URL) || "http://playground.devicehive.com/api/swagger",
 
     api: envexpand(process.env.DH_API) || "http://playground.devicehive.com/api/rest",
-    api_key: process.env.DH_API_KEY || 'DFXFrZ8VQIkOYECScBbBwsYinj+o8IlaLsRQ81wO+l8',
+    jwt: process.env.DH_JWT || 'token',
 
     secret: process.env.DH_SECRET || 'in god we trust'
 

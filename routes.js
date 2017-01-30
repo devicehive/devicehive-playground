@@ -9,13 +9,13 @@ var faker = require('faker');
 
 /**
  * Main entry point.
- * The goal is to get the AccessKey by user's email.
+ * The goal is to get JWT by user's email.
  *
  * 1. tries to find the User by the email
  *    - if found: tries to get its AccessKey and returns it
  *    - if not found: proceed to step 2
- * 2. creates a new User, Network and AccessKey
- *    - if everything went smooth, returns the AccessKey
+ * 2. creates a new User, Network and JWT
+ *    - if everything went smooth, returns jwt
  *
  */
 
@@ -27,7 +27,6 @@ module.exports.info = function (req, res) {
 
     var callback = {
         success: function (data) {
-
             try{
                 if (data.email && !data.user.status) {
                     var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
@@ -36,14 +35,13 @@ module.exports.info = function (req, res) {
                         api: url.resolve(fullUrl, config.api_url),
                         admin: url.resolve(fullUrl, config.admin_url),
                         dashboard:url.resolve(fullUrl, config.dashboard_url),
-                        accessKey: data.accessKey.key,
-                        accessKeyEncoded: encodeURIComponent(data.accessKey.key),
+                        accessToken: data.jwt.accessToken,
+                        refreshToken: data.jwt.refreshToken,
                         network: data.network,
                         uniqueDeviceName: faker.internet.domainWord() + '-' + faker.random.number()
                     };
-                    res.cookie('DeviceHiveToken', data.accessKey.key);
+                    res.cookie('DeviceHiveToken', data.jwt.accessToken);
                     res.render('info', info);
-
                 } else {
                     res.status(403).send('Access Denied');
                 }
@@ -58,13 +56,10 @@ module.exports.info = function (req, res) {
         }
     };
 
-
     api.getUserByEmail(req.user.email)
-        .then(api.getAccessKey)
         .then(api.getNetwork)
         .then(api.assignNetwork)
+        .then(api.getJWT)
         .then(callback.success)
         .catch(callback.error);
-
-
 };
