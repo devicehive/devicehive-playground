@@ -2,12 +2,13 @@
 <div><strong>API URL:</strong>&nbsp;
     <a target="_blank" href="<%= api %>"><%= api %></a>
 </div>
-<div><strong>Access Key:</strong>&nbsp;<%= accessKey %></div>
+<div style='word-wrap:break-word;'><strong>Access-JWT:</strong>&nbsp;<%= accessToken %></div>
+<div style='word-wrap:break-word;'><strong>Refresh-JWT:</strong>&nbsp;<%= refreshToken %></div>
 <div style="
     color: #ff671b;
     font-style: italic;
     font-size: smaller;
-">Keep your Access Key in secret. Do not share.</div>
+">Keep your JWTs in secret. Do not share.</div>
 <br/>
 <div><strong>Network Name:</strong>&nbsp;<%= network.name %></div>
 <% if (network.key) { %>
@@ -16,9 +17,8 @@
 
 
 <br/>
-
 <div><strong>Admin Console:</strong>&nbsp;
-    <a target="_blank" href="<%= admin %>?deviceHiveToken=<%= accessKeyEncoded %>#devices"><%= admin %></a>
+    <a target="_blank" href="<%= admin %>?deviceHiveToken=<%= accessTokenEncoded %>#devices"><%= admin %></a>
 </div>
 <div><strong>Dashboard:</strong>&nbsp;
     <a target="_blank" href="<%= dashboard %>"><%= dashboard %></a>
@@ -30,8 +30,8 @@
 <br/>
 
 <h5 style="text-align: left">Register Device using cURL:</h5>
-<code style="display:block;white-space:pre-wrap; text-align: left">curl -X PUT \
-    -H "Authorization: Bearer <%= accessKey %>" \
+<code style="word-wrap:break-word; display:block;white-space:pre-wrap; text-align: left">curl -X PUT \
+    -H "Authorization: Bearer <%= accessToken %>" \
     -H "Content-Type: application/json" \
     -d '{"name" : "<%= uniqueDeviceName %>", "deviceClass": {"name" : "default device", "version": "1.0"}}' \
     '<%= api %>/device/<%= uniqueDeviceName %>'
