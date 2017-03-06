@@ -21,14 +21,10 @@ var faker = require('faker');
 
 module.exports.info = function (req, res) {
 
-    if (!req.user || !req.user.email_verified ) {
-        return res.status(403).send('Access Denied');
-    }
-
     var callback = {
         success: function (data) {
             try{
-                if (data.email && !data.user.status) {
+                if (data.email) {
                     var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
                     var info = {
                         swagger: url.resolve(fullUrl, config.swagger_url),
@@ -57,7 +53,7 @@ module.exports.info = function (req, res) {
         }
     };
 
-    api.getUserByEmail(req.user.email)
+    api.getUserByEmail(req.user)
         .then(api.getNetwork)
         .then(api.assignNetwork)
         .then(api.getJWT)

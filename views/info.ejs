@@ -2,12 +2,19 @@
 <div><strong>API URL:</strong>&nbsp;
     <a target="_blank" href="<%= api %>"><%= api %></a>
 </div>
-<div style='word-wrap:break-word;'><strong>Access-JWT:</strong>&nbsp;<%= accessToken %></div>
-<div style='word-wrap:break-word;'><strong>Refresh-JWT:</strong>&nbsp;<%= refreshToken %></div>
+<div style='word-wrap:break-word; margin-top: 20px'>
+    <strong>Access-JWT:</strong>&nbsp;
+    <div style='word-wrap:break-word; margin-top: 10px' onclick="copyToClipboard(this)"><%= accessToken %></div>
+</div>
+<div style='word-wrap:break-word; margin-top: 20px'>
+    <strong>Refresh-JWT:</strong>&nbsp;
+    <div style='word-wrap:break-word; margin-top: 10px' onclick="copyToClipboard(this)"><%= refreshToken %></div>
+</div>
 <div style="
     color: #ff671b;
     font-style: italic;
     font-size: smaller;
+    margin-top: 20px
 ">Keep your JWTs in secret. Do not share.</div>
 <br/>
 <div><strong>Network Name:</strong>&nbsp;<%= network.name %></div>
@@ -30,7 +37,7 @@
 <br/>
 
 <h5 style="text-align: left">Register Device using cURL:</h5>
-<code style="word-wrap:break-word; display:block;white-space:pre-wrap; text-align: left">curl -X PUT \
+<code style="word-wrap:break-word; display:block;white-space:pre-wrap; text-align: left" onclick="copyToClipboard(this)">curl -X PUT \
     -H "Authorization: Bearer <%= accessToken %>" \
     -H "Content-Type: application/json" \
     -d '{"name" : "<%= uniqueDeviceName %>", "deviceClass": {"name" : "default device", "version": "1.0"}}' \

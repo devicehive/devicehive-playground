@@ -27,40 +27,29 @@
                 Use information below to get your access credentials.</p>
 
         <div class="modal-container" id="sLogin" >
-                <h3>Login or Sign Up</h3>
+                <h3>Login by</h3>
                 <ul class="social login-social">
                     <li>
-              <a href="#" onclick="socialLogin('google')">
+              <a href="/auth/google">
                             <span class="icon i-f-hex google-bg"><i class="i-f-google-plus"></i></span>
                         </a>
                     </li>
                     <li>
-              <a href="#" onclick="socialLogin('github')">
+              <a href="/auth/github">
                             <span class="icon i-f-hex github-bg"><i class="fa fa-github"></i></span>
                         </a>
                     </li>
                     <li>
-              <a href="#" onclick="socialLogin('facebook')">
+              <a href="/auth/facebook">
                             <span class="icon i-f-hex facebook-bg"><i class="fa fa-facebook"></i></span>
                         </a>
                     </li>
                 </ul>
-                <p>or using playground account</p>
-                <form class="form" onsubmit="return signinorup()">
-
-                <input class="modal-input" type="text" id="email" placeholder="Email" required>
-                <input class="modal-input" type="password" id="password" placeholder="Password" required>
-                <div class="button-container clearfix">
-                    <button type="submit" class="btn04 login-btn" id="loginBtn" onclick="window.signup = false">Log in</button>
-                    <span>or</span>
-                    <button type="submit" class="btn03 sign-up-btn" id="signupBtn" onclick="window.signup = true">Sign Up</button>
-                </div>
-                </form>
 
             </div>
             <div class="section center" id="sInfo" style="display: none">
                 <p>
-                    Logged in as <span id="greeting"></span> <a href="javascript:logout()" class="logout-link">Logout</a>
+                    <a href="javascript:logout()" class="logout-link">Logout</a>
                 </p>
 
                 <h4>Your Connection Details</h4>

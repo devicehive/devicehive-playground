@@ -5,10 +5,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-var UserApp = require('userapp');
-
 var routes = require('./routes.js');
+var passport = require('passport');
+
+// Init oauth configs
+var googleConfig = require('./config/passport')(passport);
 
 var app = express();
 
@@ -22,34 +23,72 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+var session = require('express-session');
 
-UserApp.initialize({appId: '55d4b6eb20d74'});
+// Config express session
+app.use(session(
+    {
+        secret: "secret",
+        resave: true,
+        saveUninitialized: true,
+        rolling: true,
+        cookie: { httpOnly: false } // Necessary for accessing cookies from js
+    }
+));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
-var cookieAuth = function (req, res, next) {
-    if (!req.cookies.ua_session_token) {
+var authFilter = function (req, res, next) {
+    if (!req.user) {
         res.status(403).send('Access Denied');
         return next(false);
+    } else {
+        next();
     }
-
-    // all operations to work as we working in same thread
-    UserApp.setToken(req.cookies.ua_session_token);
-    UserApp.User.get({}, function (error, result) {
-        if (error) {
-            res.clearCookie('ua_session_token');
-            res.status(401).json(error);
-            return next(false);
-        } else {
-            req.user = result[0];
-            next();
-        }});
-
 };
 
 
 // main routes
-app.get('/info', cookieAuth, routes.info);
+app.get('/info', authFilter, routes.info);
 
+// oauth routes
+// google
+app.get('/auth/google', passport.authenticate('google', { scope : ['email'] })
+);
+
+app.get('/auth/google/callback',
+    passport.authenticate('google', {
+        successRedirect: "/",
+        failureRedirect : '/'
+    })
+);
+
+// github
+app.get('/auth/github',passport.authenticate('github', { scope : ['email'] }));
+
+app.get('/auth/github/callback',
+    passport.authenticate('github', {
+        successRedirect: "/",
+        failureRedirect : '/'
+    })
+);
+
+// facebook
+app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['email'] })
+);
+
+app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+        successRedirect: "/",
+        failureRedirect : '/'
+    })
+);
+
+app.get('/logout', function (req, res) {
+    req.session.destroy();
+    res.redirect('/');
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
