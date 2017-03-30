@@ -37,9 +37,9 @@
 <br/>
 
 <h5 style="text-align: left">Register Device using cURL:</h5>
-<code style="word-wrap:break-word; display:block;white-space:pre-wrap; text-align: left" onclick="copyToClipboard(this)">curl -X PUT \
+<code style="word-wrap:break-word; display:block;white-space:pre-wrap; text-align: left">curl -X PUT \
     -H "Authorization: Bearer <%= accessToken %>" \
     -H "Content-Type: application/json" \
-    -d '{"name" : "<%= uniqueDeviceName %>", "deviceClass": {"name" : "default device", "version": "1.0"}}' \
+    -d '{"name" : "<%= uniqueDeviceName %>", "deviceClass": {"name" : "default device"}}' \
     '<%= api %>/device/<%= uniqueDeviceName %>'
 </code>
