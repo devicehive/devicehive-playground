@@ -54,8 +54,9 @@ app.get('/info', authFilter, routes.info);
 
 // oauth routes
 // google
-app.get('/auth/google', passport.authenticate('google', { scope : ['email'] })
-);
+app.get('/auth/google', passport.authenticate('google', {
+    scope : ['https://www.googleapis.com/auth/plus.me','https://www.googleapis.com/auth/userinfo.email']
+}));
 
 app.get('/auth/google/callback',
     passport.authenticate('google', {
@@ -65,7 +66,7 @@ app.get('/auth/google/callback',
 );
 
 // github
-app.get('/auth/github',passport.authenticate('github', { scope : ['email'] }));
+app.get('/auth/github',passport.authenticate('github', { scope : ['user'] })); // User scope includes user:email scope
 
 app.get('/auth/github/callback',
     passport.authenticate('github', {
@@ -75,8 +76,7 @@ app.get('/auth/github/callback',
 );
 
 // facebook
-app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['email'] })
-);
+app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['public_profile', 'email'] }));
 
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
