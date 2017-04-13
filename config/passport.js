@@ -8,8 +8,7 @@ module.exports = function(passport) {
     passport.serializeUser(function(user, done) {
         if (typeof user.emails !== "undefined" && typeof user.emails[0] !== "undefined") { // Serialize by primary public email
             done(null, user.emails[0].value);
-        }
-        else {
+        } else {
             done(null, user.id) // Serialize by id
         }
     });
