@@ -6,7 +6,11 @@ module.exports = function(passport) {
 
     // used to serialize the user for the session
     passport.serializeUser(function(user, done) {
-        done(null, user.emails[0].value); // Getting primary email from user object
+        if (typeof user.emails !== "undefined" && typeof user.emails[0] !== "undefined") { // Serialize by primary public email
+            done(null, user.emails[0].value);
+        } else {
+            done(null, user.id) // Serialize by id
+        }
     });
 
     // used to deserialize the user
