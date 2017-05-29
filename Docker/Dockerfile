@@ -1,5 +1,8 @@
 FROM phusion/passenger-nodejs
 
+ARG SOURCE_REPOSITORY_URL
+ARG SOURCE_BRANCH
+
 # Set correct environment variables.
 ENV HOME /root
 
@@ -15,6 +18,7 @@ RUN rm -f /etc/service/nginx/down \
 
 # copy playground website files
 RUN curl -L https://github.com/devicehive/devicehive-playground/archive/master.tar.gz | tar -zxf- -C /tmp \
+RUN curl -L "${SOURCE_REPOSITORY_URL:-https://github.com/devicehive/devicehive-playground}/archive/${SOURCE_BRANCH:-master}.tar.gz" | tar -zxf- -C /tmp \
     && mv /tmp/devicehive-playground-master /home/app/playground \
     && cd /home/app/playground \
     && npm install . \
