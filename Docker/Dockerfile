@@ -17,10 +17,9 @@ RUN rm -f /etc/service/nginx/down \
     && rm /etc/nginx/sites-enabled/default
 
 # copy playground website files
-RUN curl -L https://github.com/devicehive/devicehive-playground/archive/master.tar.gz | tar -zxf- -C /tmp \
-RUN curl -L "${SOURCE_REPOSITORY_URL:-https://github.com/devicehive/devicehive-playground}/archive/${SOURCE_BRANCH:-master}.tar.gz" | tar -zxf- -C /tmp \
-    && mv /tmp/devicehive-playground-master /home/app/playground \
+RUN mkdir /home/app/playground \
     && cd /home/app/playground \
+    && curl -L "${SOURCE_REPOSITORY_URL:-https://github.com/devicehive/devicehive-playground}/archive/${SOURCE_BRANCH:-master}.tar.gz" | tar -zxf - --strip-components=1 \
     && npm install . \
     && npm cache clean \
     && chown -R app:app /home/app/playground
