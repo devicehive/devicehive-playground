@@ -26,3 +26,4 @@ RUN mkdir /home/app/playground \
 
 # register playground website in nginx
 ADD playground.conf /etc/nginx/sites-enabled/playground.conf
+ADD nginx-env.conf /etc/nginx/main.d/nginx-env.conf
