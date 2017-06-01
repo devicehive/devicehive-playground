@@ -12,8 +12,8 @@ module.exports = {
     dashboard_url: envexpand(process.env.DH_DASHBOARD_URL) || "http://playground.devicehive.com/dashboard",
     swagger_url: envexpand(process.env.DH_SWAGGER_URL) || "http://playground.devicehive.com/api/swagger",
 
-    api: envexpand(process.env.DH_API) || "http://playground.devicehive.com/api/rest",
-    jwt: process.env.DH_JWT || 'token',
+    admin_login: process.env.DH_ADMIN_LOGIN || 'dhadmin',
+    admin_password: process.env.DH_ADMIN_PASSWORD || 'dhadmin_#911',
 
     secret: process.env.DH_SECRET || 'in god we trust'
 
