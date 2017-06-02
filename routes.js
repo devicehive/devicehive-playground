@@ -53,8 +53,8 @@ module.exports.info = function (req, res) {
         }
     };
 
-    api.getAdminToken()
-        .then(getUserByEmail(req.user))
+     api.getAdminToken(req.user)
+        .then(api.getUserByEmail)
         .then(api.getNetwork)
         .then(api.assignNetwork)
         .then(api.getJWT)
