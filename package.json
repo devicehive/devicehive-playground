@@ -23,7 +23,7 @@
     "promise": "^7.0.4",
     "request-promise": "^0.4.3",
     "serve-favicon": "~2.3.0",
-    "userapp": "^2.0.0"
+    "randomstring": "^1.1.5"
   },
   "license": "MIT"
 }
