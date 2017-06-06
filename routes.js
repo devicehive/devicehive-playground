@@ -12,7 +12,7 @@ var faker = require('faker');
  * The goal is to get JWT by user's email.
  *
  * 1. tries to find the User by the email
- *    - if found: tries to get its AccessKey and returns it
+ *    - if found: tries to get its AccessToken and returns it
  *    - if not found: proceed to step 2
  * 2. creates a new User, Network and JWT
  *    - if everything went smooth, returns jwt
@@ -53,7 +53,8 @@ module.exports.info = function (req, res) {
         }
     };
 
-    api.getUserByEmail(req.user)
+     api.getAdminToken(req.user)
+        .then(api.getUserByEmail)
         .then(api.getNetwork)
         .then(api.assignNetwork)
         .then(api.getJWT)
