@@ -27,10 +27,10 @@ module.exports.info = function (req, res) {
                 if (data.email) {
                     var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
                     var info = {
-                        swagger: url.resolve(fullUrl, config.swagger_url),
-                        api: url.resolve(fullUrl, config.api_url),
-                        admin: url.resolve(fullUrl, config.admin_url),
-                        dashboard:url.resolve(fullUrl, config.dashboard_url),
+                        swagger: url.resolve(fullUrl, config.url + 'api/swagger'),
+                        api: url.resolve(fullUrl, config.url + 'api/rest'),
+                        admin: url.resolve(fullUrl, config.url + 'admin'),
+                        dashboard: url.resolve(fullUrl, config.url + 'dashboard'),
                         accessToken: data.jwt.accessToken,
                         refreshToken: data.jwt.refreshToken,
                         accessTokenEncoded: encodeURIComponent(data.jwt.accessToken),
