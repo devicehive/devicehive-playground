@@ -66,7 +66,7 @@ app.get('/auth/google/callback',
 );
 
 // github
-app.get('/auth/github',passport.authenticate('github', { scope : ['user'] })); // User scope includes user:email scope
+app.get('/auth/github',passport.authenticate('github', { scope : ['user:email'] }));
 
 app.get('/auth/github/callback',
     passport.authenticate('github', {
