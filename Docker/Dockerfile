@@ -24,6 +24,19 @@ RUN mkdir /home/app/playground \
     && npm cache clean \
     && chown -R app:app /home/app/playground
 
+# Install freeboard and DeviceHive datastore
+RUN mkdir -p /home/app/freeboard/dashboard \
+    && cd /home/app/freeboard/dashboard \
+    && curl -L https://github.com/devicehive/freeboard/archive/master.tar.gz | tar -zxf - --strip-components=1 \
+    && npm install . \
+    && npm install -g grunt-cli \
+    && grunt \
+    && npm cache clean \
+    && mkdir -p /home/app/freeboard/dashboard/plugins/devicehive-freeboard-datasource \
+    && cd /home/app/freeboard/dashboard/plugins/devicehive-freeboard-datasource \
+    && curl -L https://github.com/devicehive/devicehive-freeboard-datasource/archive/master.tar.gz | tar -zxf - --strip-components=1 \
+    && chown -R app:app /home/app/freeboard/dashboard
+
 # register playground website in nginx
 ADD playground.conf /etc/nginx/sites-enabled/playground.conf
 ADD nginx-env.conf /etc/nginx/main.d/nginx-env.conf
