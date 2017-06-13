@@ -37,6 +37,8 @@ function checkUser(){
 
 $( document ).ready(function() {
     checkUser();
+    $('#access-jwt').tooltip();
+    $('#refresh-jwt').tooltip();
 });
 
 // Logout function
@@ -52,7 +54,6 @@ function copyToClipboard(element) {
     $temp.val($(element).text()).select();
     document.execCommand("copy");
     $temp.remove();
-    alert("Copied to clipboard!")
 }
 
 
