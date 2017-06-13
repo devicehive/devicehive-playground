@@ -9,6 +9,8 @@ function getCurrentUser() {
 
     $.get( "info", function( data ) {
         $("#server_data").html(data);
+        $('#access-jwt').tooltip();
+        $('#refresh-jwt').tooltip();
     }).fail(function(res) {
         $("#server_data").text(res.responseText);
         $.removeCookie("is_authenticated");
@@ -37,8 +39,6 @@ function checkUser(){
 
 $( document ).ready(function() {
     checkUser();
-    $('#access-jwt').tooltip();
-    $('#refresh-jwt').tooltip();
 });
 
 // Logout function
