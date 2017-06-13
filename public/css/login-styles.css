@@ -159,7 +159,7 @@ span[class*='i-f-'] i[class*='fa-'] {
     padding: 109px 135px 95px;
 }
 
-.sign-up-modal .modal-content {
+.sign-up-modal .login-modal-content {
     box-sizing: border-box;
     position: relative;
     width: 100%;
@@ -187,7 +187,7 @@ span[class*='i-f-'] i[class*='fa-'] {
     min-height: 100%;
 }
 
-.login-modal .modal-content {
+.login-modal .login-modal-content {
     margin: 0 auto;
     padding: 150px 0 100px;
     text-align: center;
@@ -275,7 +275,7 @@ span[class*='i-f-'] i[class*='fa-'] {
         padding: 100px 24px 95px;
     }
 
-    .sign-up-modal .modal-content {
+    .sign-up-modal .login-modal-content {
         padding: 35px 10px 20px;
     }
 
@@ -306,7 +306,7 @@ span[class*='i-f-'] i[class*='fa-'] {
 }
 
 @media screen and (max-width: 480px) {
-    .sign-up-modal .modal-content {
+    .sign-up-modal .login-modal-content {
         padding: 35px 0 20px;
     }
 
