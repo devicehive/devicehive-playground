@@ -41,7 +41,7 @@ app.use(passport.session());
 
 var authFilter = function (req, res, next) {
     if (!req.user) {
-        res.status(403).send('Access Denied');
+        res.status(403).send('Your access key has expired. Please re-login.');
         return next(false);
     } else {
         next();

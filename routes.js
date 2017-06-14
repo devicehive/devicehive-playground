@@ -40,7 +40,7 @@ module.exports.info = function (req, res) {
                     res.cookie('DeviceHiveToken', data.jwt.accessToken);
                     res.render('info', info);
                 } else {
-                    res.status(403).send('Access Denied');
+                    res.status(403).send('Your access key has expired. Please re-login.');
                 }
             } catch(err){
                 res.status(500).send(err);
