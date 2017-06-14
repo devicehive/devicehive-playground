@@ -2,14 +2,15 @@
 <div><strong>API URL:</strong>&nbsp;
     <a target="_blank" href="<%= api %>"><%= api %></a>
 </div>
-<div id="copy-token-message">Token has been copied</div>
+<div id="copy-access-token-message" class="copy-token-messages">Access token has been copied</div>
 <div style='word-wrap:break-word; margin-top: 20px'>
     <strong>Access-JWT:</strong>&nbsp;
-    <div id="access-jwt" style='word-wrap:break-word; margin-top: 10px; background-color:#f9f9f9;' onclick="copyToClipboard(this)" data-toggle="tooltip" title="Click to copy" data-placement="right"><%= accessToken %></div>
+    <div id="access-jwt" style='word-wrap:break-word; margin-top: 10px; background-color:#f9f9f9;' onclick="copyAccessToken(this)" data-toggle="tooltip" title="Click to copy" data-placement="right"><%= accessToken %></div>
 </div>
 <div style='word-wrap:break-word; margin-top: 20px'>
+    <div id="copy-refresh-token-message" class="copy-token-messages">Refresh token has been copied</div>
     <strong>Refresh-JWT:</strong>&nbsp;
-    <div id="refresh-jwt" style='word-wrap:break-word; margin-top: 10px; background-color:#f9f9f9;' onclick="copyToClipboard(this)" data-toggle="tooltip" title="Click to copy" data-placement="right"><%= refreshToken %></div>
+    <div id="refresh-jwt" style='word-wrap:break-word; margin-top: 10px; background-color:#f9f9f9;' onclick="copyRefreshToken(this)" data-toggle="tooltip" title="Click to copy" data-placement="right"><%= refreshToken %></div>
 </div>
 <div style="
     color: #ff671b;

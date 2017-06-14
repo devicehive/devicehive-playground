@@ -576,14 +576,19 @@ input[type=password]:-ms-input-placeholder {
 	text-align: center;
 }
 
-#copy-token-message {
+#access-token-container {
+	display: block;
+}
+
+.copy-token-messages {
 	display: none;
-	background: #f9f9f9;
-	position:fixed;
+	color: #fff;
+	background-color: #333333;;
+	position:relative;
 	width:300px;
 	height:100px;
 	margin:-50px auto auto -150px;
-	top:50%;
+	top:180px;
 	left:50%;
 	line-height: 100px;
 }
