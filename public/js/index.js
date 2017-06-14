@@ -54,4 +54,9 @@ function copyToClipboard(element) {
     $temp.val($(element).text()).select();
     document.execCommand("copy");
     $temp.remove();
+
+    $('#copy-token-message').show();
+    setTimeout(function() {
+        $('#copy-token-message').fadeOut('fast');
+    }, 1000);
 }
