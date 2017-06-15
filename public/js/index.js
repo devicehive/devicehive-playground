@@ -12,7 +12,7 @@ function getCurrentUser() {
         $('#access-jwt').tooltip();
         $('#refresh-jwt').tooltip();
     }).fail(function(res) {
-        $("#server_data").text(res.responseText);
+        $("#server_data").text("Oops! Something went wrong on server!");
         $.removeCookie("is_authenticated");
     });
 }
