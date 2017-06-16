@@ -1,1 +1,5 @@
-<h1>Oops! Something went wrong on server!</h1>
+<% if (message) { %>
+    <h1><%= message %></h1>
+<% } else { %>
+    <h1>Oops! Something went wrong on server!</h1>
+<% } %>
