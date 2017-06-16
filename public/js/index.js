@@ -9,8 +9,14 @@ function getCurrentUser() {
 
     $.get( "info", function( data ) {
         $("#server_data").html(data);
+        $('#access-jwt').tooltip();
+        $('#refresh-jwt').tooltip();
     }).fail(function(res) {
-        $("#server_data").text(res.responseText);
+        if (res.status < 404) {
+            $("#server_data").text("Your access key has expired. Please re-login.");
+        } else {
+            $("#server_data").text("Oops! Something went wrong on server!");
+        }
         $.removeCookie("is_authenticated");
     });
 }
@@ -45,6 +51,22 @@ function logout() {
     window.location = "/logout";
 }
 
+function copyAccessToken(element) {
+    this.copyToClipboard(element);
+    $('#copy-access-token-message').show();
+    setTimeout(function() {
+        $('#copy-access-token-message').fadeOut('fast');
+    }, 1000);
+}
+
+function copyRefreshToken(element) {
+    this.copyToClipboard(element);
+    $('#copy-refresh-token-message').show();
+    setTimeout(function() {
+        $('#copy-refresh-token-message').fadeOut('fast');
+    }, 1000);
+}
+
 // Function to copy to clipboard
 function copyToClipboard(element) {
     var $temp = $("<input>");
@@ -52,7 +74,4 @@ function copyToClipboard(element) {
     $temp.val($(element).text()).select();
     document.execCommand("copy");
     $temp.remove();
-    alert("Copied to clipboard!")
 }
-
-

@@ -41,7 +41,7 @@ app.use(passport.session());
 
 var authFilter = function (req, res, next) {
     if (!req.user) {
-        res.status(403).send('Access Denied');
+        res.status(403).send('Your access key has expired. Please re-login.');
         return next(false);
     } else {
         next();
@@ -66,7 +66,7 @@ app.get('/auth/google/callback',
 );
 
 // github
-app.get('/auth/github',passport.authenticate('github', { scope : ['user'] })); // User scope includes user:email scope
+app.get('/auth/github',passport.authenticate('github', { scope : ['user:email'] }));
 
 app.get('/auth/github/callback',
     passport.authenticate('github', {

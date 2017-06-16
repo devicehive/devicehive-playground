@@ -1,6 +1,7 @@
 var GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 var GithubStrategy = require("passport-github2").Strategy;
 var FacebookStrategy = require("passport-facebook").Strategy;
+var config = require('./api.js');
 
 module.exports = function(passport) {
 
@@ -9,7 +10,7 @@ module.exports = function(passport) {
         if (typeof user.emails !== "undefined" && typeof user.emails[0] !== "undefined") { // Serialize by primary public email
             done(null, user.emails[0].value);
         } else {
-            done(null, user.id) // Serialize by id
+            done(null, user.id); // Serialize by id
         }
     });
 
@@ -21,7 +22,7 @@ module.exports = function(passport) {
     passport.use(new GoogleStrategy({
             clientID        : process.env.GOOGLE_CLIENT_ID || "client_id",
             clientSecret    : process.env.GOOGLE_SECRET || "client_secret",
-            callbackURL     : process.env.GOOGLE_REDIRECT_URL || "http://playground.devicehive.com/auth/google/callback"
+            callbackURL     : process.env.GOOGLE_REDIRECT_URL || config.url + "auth/google/callback"
         },
         function(token, refreshToken, profile, done) {
             return done(null, profile);
@@ -30,7 +31,7 @@ module.exports = function(passport) {
     passport.use(new GithubStrategy({
             clientID        : process.env.GITHUB_CLIENT_ID || "client_id",
             clientSecret    : process.env.GITHUB_SECRET || "client_secret",
-            callbackURL     : process.env.GITHUB_REDIRECT_URL || "http://playground.devicehive.com/auth/github/callback"
+            callbackURL     : process.env.GITHUB_REDIRECT_URL || config.url + "auth/github/callback"
         },
         function(token, refreshToken, profile, done) {
             return done(null, profile);
@@ -39,7 +40,7 @@ module.exports = function(passport) {
     passport.use(new FacebookStrategy({
             clientID        : process.env.FACEBOOK_CLIENT_ID || "client_id",
             clientSecret    : process.env.FACEBOOK_SECRET || "client_secret",
-            callbackURL     : process.env.FACEBOOK_REDIRECT_URL || "http://playground.devicehive.com/auth/facebook/callback",
+            callbackURL     : process.env.FACEBOOK_REDIRECT_URL || config.url + "auth/facebook/callback",
             profileFields: ['emails'],
             enableProof: true
         },

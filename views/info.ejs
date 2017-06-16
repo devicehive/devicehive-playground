@@ -2,13 +2,16 @@
 <div><strong>API URL:</strong>&nbsp;
     <a target="_blank" href="<%= api %>"><%= api %></a>
 </div>
+
 <div style='word-wrap:break-word; margin-top: 20px'>
+    <div id="copy-access-token-message" class="copy-token-messages">Access token has been copied</div>
     <strong>Access-JWT:</strong>&nbsp;
-    <div style='word-wrap:break-word; margin-top: 10px' onclick="copyToClipboard(this)"><%= accessToken %></div>
+    <div id="access-jwt" style='word-wrap:break-word; margin-top: 10px; background-color:#f9f9f9;' onclick="copyAccessToken(this)" data-toggle="tooltip" title="Click to copy" data-placement="right"><%= accessToken %></div>
 </div>
 <div style='word-wrap:break-word; margin-top: 20px'>
+    <div id="copy-refresh-token-message" class="copy-token-messages">Refresh token has been copied</div>
     <strong>Refresh-JWT:</strong>&nbsp;
-    <div style='word-wrap:break-word; margin-top: 10px' onclick="copyToClipboard(this)"><%= refreshToken %></div>
+    <div id="refresh-jwt" style='word-wrap:break-word; margin-top: 10px; background-color:#f9f9f9;' onclick="copyRefreshToken(this)" data-toggle="tooltip" title="Click to copy" data-placement="right"><%= refreshToken %></div>
 </div>
 <div style="
     color: #ff671b;
@@ -18,9 +21,6 @@
 ">Keep your JWTs in secret. Do not share.</div>
 <br/>
 <div><strong>Network Name:</strong>&nbsp;<%= network.name %></div>
-<% if (network.key) { %>
-<div><strong>Network Key:</strong>&nbsp;<%= network.key %></div>
-<% } %>
 
 
 <br/>
@@ -37,9 +37,9 @@
 <br/>
 
 <h5 style="text-align: left">Register Device using cURL:</h5>
-<code style="word-wrap:break-word; display:block;white-space:pre-wrap; text-align: left">curl -X PUT \
+<code style="word-wrap:break-word; display:block;white-space:pre-wrap; text-align: left; color: #666; background-color: inherit;">curl -X PUT \
     -H "Authorization: Bearer <%= accessToken %>" \
     -H "Content-Type: application/json" \
-    -d '{"name" : "<%= uniqueDeviceName %>", "deviceClass": {"name" : "default device"}}' \
+    -d '{"name" : "<%= uniqueDeviceName %>"}' \
     '<%= api %>/device/<%= uniqueDeviceName %>'
 </code>

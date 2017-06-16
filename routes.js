@@ -12,7 +12,7 @@ var faker = require('faker');
  * The goal is to get JWT by user's email.
  *
  * 1. tries to find the User by the email
- *    - if found: tries to get its AccessKey and returns it
+ *    - if found: tries to get its AccessToken and returns it
  *    - if not found: proceed to step 2
  * 2. creates a new User, Network and JWT
  *    - if everything went smooth, returns jwt
@@ -27,10 +27,10 @@ module.exports.info = function (req, res) {
                 if (data.email) {
                     var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
                     var info = {
-                        swagger: url.resolve(fullUrl, config.swagger_url),
-                        api: url.resolve(fullUrl, config.api_url),
-                        admin: url.resolve(fullUrl, config.admin_url),
-                        dashboard:url.resolve(fullUrl, config.dashboard_url),
+                        swagger: url.resolve(fullUrl, config.url + 'api/swagger'),
+                        api: url.resolve(fullUrl, config.url + 'api/rest'),
+                        admin: url.resolve(fullUrl, config.url + 'admin'),
+                        dashboard: url.resolve(fullUrl, config.url + 'dashboard'),
                         accessToken: data.jwt.accessToken,
                         refreshToken: data.jwt.refreshToken,
                         accessTokenEncoded: encodeURIComponent(data.jwt.accessToken),
@@ -40,7 +40,7 @@ module.exports.info = function (req, res) {
                     res.cookie('DeviceHiveToken', data.jwt.accessToken);
                     res.render('info', info);
                 } else {
-                    res.status(403).send('Access Denied');
+                    res.status(403).send('Your access key has expired. Please re-login.');
                 }
             } catch(err){
                 res.status(500).send(err);
@@ -53,7 +53,8 @@ module.exports.info = function (req, res) {
         }
     };
 
-    api.getUserByEmail(req.user)
+     api.getAdminToken(req.user)
+        .then(api.getUserByEmail)
         .then(api.getNetwork)
         .then(api.assignNetwork)
         .then(api.getJWT)
