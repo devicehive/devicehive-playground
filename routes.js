@@ -34,6 +34,7 @@ module.exports.info = function (req, res) {
                         accessToken: data.jwt.accessToken,
                         refreshToken: data.jwt.refreshToken,
                         accessTokenEncoded: encodeURIComponent(data.jwt.accessToken),
+                        refreshTokenEncoded: encodeURIComponent(data.jwt.refreshToken),
                         network: data.network,
                         uniqueDeviceName: faker.internet.domainWord() + '-' + faker.random.number()
                     };
