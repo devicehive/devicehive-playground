@@ -21,7 +21,7 @@ RUN mkdir /home/app/playground \
     && cd /home/app/playground \
     && curl -L "${SOURCE_REPOSITORY_URL:-https://github.com/devicehive/devicehive-playground}/archive/${SOURCE_BRANCH:-master}.tar.gz" | tar -zxf - --strip-components=1 \
     && npm install . \
-    && npm cache clean \
+    && npm cache clean --force \
     && chown -R app:app /home/app/playground
 
 # Install freeboard and DeviceHive datastore
@@ -31,7 +31,7 @@ RUN mkdir -p /home/app/freeboard/dashboard \
     && npm install . \
     && npm install -g grunt-cli \
     && grunt \
-    && npm cache clean \
+    && npm cache clean --force \
     && mkdir -p /home/app/freeboard/dashboard/plugins/devicehive-freeboard-datasource \
     && cd /home/app/freeboard/dashboard/plugins/devicehive-freeboard-datasource \
     && curl -L https://github.com/devicehive/devicehive-freeboard-datasource/archive/master.tar.gz | tar -zxf - --strip-components=1 \
