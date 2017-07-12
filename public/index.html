@@ -1,69 +1,197 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
-    <title>DeviceHive Playground</title>
+<!--[if lt IE 7]>
+<html class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html> <!--<![endif]-->
+<head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/yeti/bootstrap.min.css">
-
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/login-styles.css">
-    <link rel="stylesheet" href="css/icons.css">
-
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Playground</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
 </head>
 <body>
-<div id="loginModal" class="login-modal">
-    <div class="login-modal-content">
-        <div class="container">
-            <h2>Welcome to DeviceHive Playground</h2>
+<header class="header" id="header">
+    <div class="container">
+        <div id="headerLogo" class="header__logo">
+            <a href="/" class="header__logo__img">
 
-            <p class="comment">Here you can get access <br class="break" />to your DeviceHive server hosted on our cloud.<br />
-                Use information below to get your access credentials.</p>
-
-            <div class="modal-container" id="sLogin" >
-                <h3>Login by</h3>
-                <ul class="social login-social">
-                    <li>
-                        <a href="/auth/google">
-                            <span class="icon i-f-hex google-bg"><i class="i-f-google-plus"></i></span>
-                        </a>
+            </a>
+        </div>
+        <div class="header-nav"  id="headerNav">
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="http://docs.devicehive.com" class="nav__link" target="_blank">Documentation</a>
                     </li>
-                    <li>
-                        <a href="/auth/github">
-                            <span class="icon i-f-hex github-bg"><i class="fa fa-github"></i></span>
-                        </a>
+                    <li class="nav__item">
+                        <a class="nav__link" href="https://github.com/devicehive" target="_blank">Download</a>
                     </li>
-                    <li>
-                        <a href="/auth/facebook">
-                            <span class="icon i-f-hex facebook-bg"><i class="fa fa-facebook"></i></span>
+                    <li class="nav__item">
+                        <a class="nav__link" href="http://docs.devicehive.com/blog" target="_blank">Blog</a>
+                    </li>
+                    <li class="nav__item">
+                        <a class="nav__link active" href="http://playground.devicehive.com" target="_blank">Playground</a>
+                    </li>
+                    <li class="nav__item">
+                        <a class="nav__link" href="http://devicehive.com#contactUs" target="_blank">Contact us</a>
+                    </li>
+                    <li class="nav__item mobile__logout">
+                        <a href="" class="playground__logout">
+                            Logout
+                            <span class="logout__icon svg-logout"></span>
                         </a>
                     </li>
                 </ul>
-
+            </nav>
+        </div>
+        <div id="mobileBtn" class="mobile-btn">
+            <div class="mobile-btn__icon">
+                <span></span>
             </div>
-            <div class="section center" id="sInfo" style="display: none">
-                <p>
-                    <a href="javascript:logout()" class="logout-link">Logout</a>
-                </p>
+        </div>
+    </div>
+</header>
 
-                <h4>Your Connection Details</h4>
-                <div id="server_data">
-                    <img src="img/spin.svg" alt="Loading..." />
+<main id="main-playground" class="playground playground_login">
+    <div class="container playground__container">
+        <div class="playground__body">
+            <div class="playground__body__inner">
+                <div class="playground__heading">
+                    <h1 class="playground__h1">
+                        Welcome
+                        <br>
+                        to DeviceHive Playground
+                    </h1>
+                    <div class="playground__description">
+                        Here you can get access to your DeviceHive server hosted on our cloud.
+                    </div>
+                </div>
+                <div id="playground-detail">
+
+                    <div id="playground-relogin">
+                        <div class="relogin__panel">
+                            <div class="details__panel">
+                                <div id="key-expired">
+                                    <div class="relogin__heading">
+                                        Sorry,
+                                    </div>
+                                    <div class="relogin__description">
+                                        <div class="relogin__warning">Your access key has expired.</div>
+                                        Please re-login.
+                                    </div>
+                                </div>
+                                <div id="server-error">
+                                    <div class="relogin__heading">
+                                        Oops!
+                                    </div>
+                                    <div class="relogin__description">
+                                        <div class="relogin__warning">Something went wrong on server!</div>
+                                        Please re-login.
+                                    </div>
+                                </div>
+                                <a href="" class="relogin__link" id="logout">
+                                    Logout
+                                    <span class="logout__icon svg-logout-white"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="loading">
+                        <img src="img/spin.svg" alt="Loading...">
+                    </div>
+                </div>
+                <div id="sign-in" class="sign-in">
+                    <div class="sign-in__heading">
+                        <div class="sign-in__heading_lg">Sign Up</div>
+                        <div class="sign-in__heading_sm">to get your connection details.</div>
+                    </div>
+                    <ul class="sign-in__btns">
+                        <li class="sign-in__item">
+                            <a href="/auth/google" class="sign-in__btn google-btn">
+                                <span class="btn-icon svg-google"></span>
+                                Google
+                            </a>
+                        </li>
+                        <li class="sign-in__item">
+                            <a href="/auth/github" class="sign-in__btn github-btn">
+                                <span class="btn-icon svg-github"></span>
+                                GitHub
+                            </a>
+                        </li>
+                        <li class="sign-in__item">
+                            <a href="/auth/facebook" class="sign-in__btn fb-btn">
+                                <span class="btn-icon svg-facebook"></span>
+                                Facebook
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer" id="footer">
+    <div class="container">
+        <div class="footer__body">
+            <div class="footer__right">
+                <div class="footer__sign-up">
+                    <div class="footer__hint footer__hint_desktop">
+                        Sign up to receive The DeviceHive News Digest
+                    </div>
+                    <div class="footer__hint footer__hint_mobile">
+                        Stay Tuned
+                    </div>
+                    <form id="footerEmailForm" class="footer-form">
+                        <input type="email" id="footer-email" name="email" placeholder="Email Address" required>
+                        <input class="footer__submit-btn" id="footerSubscribeBtn" type="submit" value="Subscribe">
+                    </form>
                 </div>
             </div>
 
+            <div class="footer__left">
+                <ul class="footer__links" id="footerLinks">
+                    <li>
+                        <a class="footer__link svg-email" href="mailto:info@devicehive.com" target="_blank">
+
+                        </a>
+                    </li>
+                    <li>
+                        <a class="footer__link svg-google-plus"  href="https://plus.google.com/u/0/+Devicehiveframework/posts" target="_blank">
+
+                        </a>
+                    </li>
+                    <li>
+                        <a class="footer__link svg-linkedin"  href="https://www.linkedin.com/grp/home?gid=4863566" target="_blank">
+
+                        </a>
+                    </li>
+                    <li>
+                        <a class="footer__link svg-twitter"  href="https://twitter.com/DeviceHive" target="_blank">
+
+                        </a>
+                    </li>
+
+                </ul>
+                <div class="footer__copyright">
+                    Developed by DataArt Solutions 2012-2015 ·
+                    <br>
+                    Distributed under MIT License
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</body>
+</footer>
 
+<script src="js/libs.min.js"></script>
 <script src="js/index.js"></script>
 
+</body>
 </html>
