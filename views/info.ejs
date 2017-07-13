@@ -79,7 +79,7 @@
             </div>
         </div>
 
-        <div class="playground-details__item">
+        <div class="playground-details__item playground-details__item_networks">
             <h2 class="details__heading">
                 Network Name
             </h2>
@@ -88,25 +88,28 @@
             </div>
             <div class="details__networks">
                 <div class="details__network">
-                    <div class="network__icon svg-admin-console"></div>
-                    <div class="network__name">
-                        Admin Console
-                    </div>
-                    <a class="network__link" target="_blank" href="<%= admin %>?deviceHiveToken=<%= accessTokenEncoded %>#devices"><%= admin %></a>
+                    <a class="network__link" target="_blank" href="<%= admin %>?deviceHiveToken=<%= accessTokenEncoded %>#devices">
+                        <div class="network__icon svg-admin-console"></div>
+                        <div class="network__name">
+                            Admin Console
+                        </div>
+                    </a>
                 </div>
                 <div class="details__network">
-                    <div class="network__icon svg-dashboard"></div>
-                    <div class="network__name">
-                        Dashboard
-                    </div>
-                    <a class="network__link" target="_blank" href="<%= dashboard %>"><%= dashboard %></a>
+                    <a class="network__link" target="_blank" href="<%= dashboard %>">
+                        <div class="network__icon svg-dashboard"></div>
+                        <div class="network__name">
+                            Dashboard
+                        </div>
+                    </a>
                 </div>
                 <div class="details__network">
-                    <div class="network__icon svg-api-console"></div>
-                    <div class="network__name">
-                        API Console
-                    </div>
-                    <a class="network__link" target="_blank" href="<%= swagger %>"><%= swagger %></a>
+                    <a class="network__link" target="_blank" href="<%= swagger %>">
+                        <div class="network__icon svg-api-console"></div>
+                        <div class="network__name">
+                            API Console
+                        </div>
+                    </a>
                 </div>
             </div>
 
