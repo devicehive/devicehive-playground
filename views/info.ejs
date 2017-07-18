@@ -20,7 +20,9 @@
     margin-top: 20px
 ">Keep your JWTs in secret. Do not share.</div>
 <br/>
-<div><strong>Network Name:</strong>&nbsp;<%= network.name %></div>
+<div><strong>Default Network Name:</strong>&nbsp;<%= network.name %></div>
+<div><strong>Default Network ID:</strong>&nbsp;<%= network.id %></div>
+<div><strong>Available Network IDs:</strong>&nbsp;<%= networkIds.join(", ") %></div>
 
 
 <br/>
@@ -40,6 +42,6 @@
 <code style="word-wrap:break-word; display:block;white-space:pre-wrap; text-align: left; color: #666; background-color: inherit;">curl -X PUT \
     -H "Authorization: Bearer <%= accessToken %>" \
     -H "Content-Type: application/json" \
-    -d '{"name" : "<%= uniqueDeviceName %>"}' \
+    -d '{"name" : "<%= uniqueDeviceName %>", "networkId" : "<%= network.id %>"}' \
     '<%= api %>/device/<%= uniqueDeviceName %>'
 </code>
