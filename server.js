@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var url = require('url');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -93,8 +94,6 @@ app.get('/*', function(req, res){
     throw new NotFound;
 });
 
-// error handlers
-
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
@@ -102,7 +101,6 @@ if (app.get('env') === 'development') {
         if(err instanceof NotFound){
             res.render('404', { locals: {
                 title : '404 - Not Found',
-                message: 'Not Found'
             }, status: 404 });
         } else {
             res.render('error', { locals: {
@@ -118,8 +116,7 @@ if (app.get('env') === 'development') {
 app.use(function (err, req, res, next) {
     if(err instanceof NotFound){
         res.render('404', { locals: {
-            title : '404 - Not Found',
-            message: 'Not Found'
+            title : '404 - Not Found'
         }, status: 404 });
     } else {
         res.render('error', { locals: {

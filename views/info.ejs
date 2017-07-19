@@ -81,11 +81,20 @@
 
         <div class="playground-details__item playground-details__item_networks">
             <h2 class="details__heading">
-                Network Name
+                Networks
             </h2>
             <div class="details__panel">
-                &nbsp;<%= network.name %>
+                <p class="networks__id">
+                    <strong>Network Name</strong>: <%= network.name %>
+                </p>
+                <p class="networks__id">
+                    <strong>Default Network ID</strong>: <%= network.id %>
+                </p>
+                <p class="networks__id">
+                    <strong>Available Network IDs</strong>: <%= networkIds.join(", ") %>
+                </p>
             </div>
+
             <div class="details__networks">
                 <div class="details__network">
                     <a class="network__link" target="_blank" href="<%= admin %>?deviceHiveToken=<%= accessTokenEncoded %>#devices">
