@@ -1,12 +1,8 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>
-<html class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>
-<html class="lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>
-<html class="lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html> <!--<![endif]-->
+<!--[if lte IE 9]>
+<html class="ie-9">
+<![endif]-->
+<html>
 <head>
     <meta charset="utf-8">
     <title>Playground</title>
@@ -37,10 +33,11 @@
                         <a class="nav__link" href="http://docs.devicehive.com/blog" target="_blank">Blog</a>
                     </li>
                     <li class="nav__item">
-                        <a class="nav__link active" href="http://playground.devicehive.com" target="_blank">Playground</a>
+                        <a class="nav__link active" href="http://playground.devicehive.com"
+                           target="_blank">Playground</a>
                     </li>
                     <li class="nav__item">
-                        <a class="nav__link" href="http://devicehive.com#contactUs" target="_blank">Contact us</a>
+                        <a class="nav__link scroll-to-anchor" href="mailto:info@devicehive.com">Contact us</a>
                     </li>
                     <li class="nav__item mobile__logout">
                         <a href="" class="playground__logout logout-btn">
@@ -140,6 +137,10 @@
     </div>
 </main>
 
+<div id="subscribedMsg">
+    Check your inbox to confirm your subscription
+</div>
+
 <footer class="footer" id="footer">
     <div class="container">
         <div class="footer__body">
@@ -151,50 +152,67 @@
                     <div class="footer__hint footer__hint_mobile">
                         Stay Tuned
                     </div>
-                    <form id="footerEmailForm" class="footer-form">
-                        <input type="email" id="footer-email" name="email" placeholder="Email Address" required>
-                        <input class="footer__submit-btn" id="footerSubscribeBtn" type="submit" value="Subscribe">
+                    <form id="footerEmailForm" class="footer-form validate"
+                          action="http://devicehive.us6.list-manage.com/subscribe/post-json?u=f61c753b4c1f02eb439b42f4f&amp;id=9c9f14f529&amp;c=?"
+                          method="GET" target="_blank">
+                        <input autocomplete="off" type="email" id="footer-email" class="required email"
+                               name="EMAIL" placeholder="Email Address"
+                               required>
+                        <span class="error" id="mailchimp-error"></span>
+                        <input class="footer__submit-btn"
+                               id="footerSubscribeBtn"
+                               type="submit"
+                               value="Subscribe"
+                               name="subscribe">
                     </form>
+                    <div class="contact-mail">
+                        Contact Us by Email: <a class="contact-mail__link" href="mailto:info@devicehive.com">info@devicehive.com</a>
+                    </div>
                 </div>
             </div>
 
             <div class="footer__left">
+                <div class="footer__hint">
+                    Follow us on social media
+                </div>
                 <ul class="footer__links" id="footerLinks">
                     <li>
-                        <a class="footer__link svg-icon svg-email" href="mailto:info@devicehive.com" target="_blank">
+                        <a class="footer__link svg-icon svg-email" href="mailto:info@devicehive.com">
 
                         </a>
                     </li>
                     <li>
-                        <a class="footer__link svg-icon svg-google-plus"  href="https://plus.google.com/u/0/+Devicehiveframework/posts" target="_blank">
-
+                        <a class="footer__link svg-icon svg-google-plus"
+                           href="https://plus.google.com/u/0/+Devicehiveframework/posts"
+                           target="_blank">
                         </a>
                     </li>
                     <li>
-                        <a class="footer__link svg-icon svg-linkedin"  href="https://www.linkedin.com/grp/home?gid=4863566" target="_blank">
-
+                        <a class="footer__link svg-icon svg-linkedin"
+                           href="https://www.linkedin.com/grp/home?gid=4863566"
+                           target="_blank">
                         </a>
                     </li>
                     <li>
-                        <a class="footer__link svg-icon svg-twitter"  href="https://twitter.com/DeviceHive" target="_blank">
-
+                        <a class="footer__link svg-icon svg-twitter"
+                           href="https://twitter.com/DeviceHive" target="_blank">
                         </a>
                     </li>
                     <li>
-                        <a class="footer__link svg-icon svg-youtube" href="https://www.youtube.com/user/DeviceHive" target="_blank">
-
+                        <a class="footer__link svg-icon svg-youtube"
+                           href="https://www.youtube.com/user/DeviceHive" target="_blank">
                         </a>
                     </li>
                     <li>
-                        <a class="footer__link svg-icon svg-icon svg-icon svg-slack" href="https://join.slack.com/t/devicehive/signup" target="_blank">
-
+                        <a class="footer__link svg-icon svg-slack"
+                           href="https://join.slack.com/t/devicehive/signup" target="_blank">
                         </a>
                     </li>
                 </ul>
                 <div class="footer__copyright">
                     Developed by DataArt Solutions 2012-2017 ·
                     <br>
-                    Distributed under MIT License
+                    Distributed under Apache License 2.0
                 </div>
             </div>
         </div>
