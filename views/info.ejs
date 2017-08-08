@@ -49,7 +49,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="details__panel details__tab hasCopy">
                     <div class="tab">
                         <div class="tab__btn">
@@ -140,7 +139,7 @@
                 <code>curl -X PUT \
     -H "Authorization: Bearer <%= accessToken %>" \
     -H "Content-Type: application/json" \
-    -d '{"name" : "<%= uniqueDeviceName %>"}' \
+    -d '{"name" : "<%= uniqueDeviceName %>", "networkId" : "<%= network.id %>"}' \
     '<%= api %>/device/<%= uniqueDeviceName %>'
                 </code>
             </div>
