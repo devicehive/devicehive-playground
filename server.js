@@ -90,35 +90,46 @@ app.get('/logout', function (req, res) {
     res.redirect('/');
 });
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+app.get('/*', function(req, res){
+    throw new NotFound;
 });
-
-// error handlers
 
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
     app.use(function (err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
+        if(err instanceof NotFound){
+            res.render('404', { locals: {
+                title : '404 - Not Found',
+            }, status: 404 });
+        } else {
+            res.render('error', { locals: {
+                message: err.message,
+                error: {}
+            }, status: (err.status || 500) });
+        }
     });
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
+    if(err instanceof NotFound){
+        res.render('404', { locals: {
+            title : '404 - Not Found'
+        }, status: 404 });
+    } else {
+        res.render('error', { locals: {
+            message: err.message,
+            error: {}
+        }, status: (err.status || 500) });
+    }
 });
+
+function NotFound(msg){
+    this.name = 'NotFound';
+    Error.call(this, msg);
+    Error.captureStackTrace(this, arguments.callee);
+}
 
 module.exports = app;

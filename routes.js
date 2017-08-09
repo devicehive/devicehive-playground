@@ -36,6 +36,7 @@ module.exports.info = function (req, res) {
                         accessTokenEncoded: encodeURIComponent(data.jwt.accessToken),
                         refreshTokenEncoded: encodeURIComponent(data.jwt.refreshToken),
                         network: data.network,
+                        networkIds: data.networkIds,
                         uniqueDeviceName: faker.internet.domainWord() + '-' + faker.random.number()
                     };
                     res.cookie('DeviceHiveToken', data.jwt.accessToken);

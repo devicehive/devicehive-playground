@@ -1,45 +1,152 @@
-﻿
-<div><strong>API URL:</strong>&nbsp;
-    <a target="_blank" href="<%= api %>"><%= api %></a>
-</div>
+﻿<div class="playground_detail">
+    <a href="" class="playground__logout logout-btn" id="logout">
+        Logout
+        <span class="logout__icon svg-icon svg-logout"></span>
+    </a>
+    <div class="playground-details">
+        <div class="playground-details__item">
+            <h2 class="details__heading">
+                API URL
+            </h2>
+            <div class="details__panel">
+                <a class="details__panel__link" href="<%= api %>" target="_blank">
+                    <%= api %>
+                </a>
+            </div>
+        </div>
 
-<div style='word-wrap:break-word; margin-top: 20px'>
-    <div id="copy-access-token-message" class="copy-token-messages">Access token has been copied</div>
-    <strong>Access-JWT:</strong>&nbsp;
-    <div id="access-jwt" style='word-wrap:break-word; margin-top: 10px; background-color:#f9f9f9;' onclick="copyAccessToken(this)" data-toggle="tooltip" title="Click to copy" data-placement="right"><%= accessToken %></div>
-</div>
-<div style='word-wrap:break-word; margin-top: 20px'>
-    <div id="copy-refresh-token-message" class="copy-token-messages">Refresh token has been copied</div>
-    <strong>Refresh-JWT:</strong>&nbsp;
-    <div id="refresh-jwt" style='word-wrap:break-word; margin-top: 10px; background-color:#f9f9f9;' onclick="copyRefreshToken(this)" data-toggle="tooltip" title="Click to copy" data-placement="right"><%= refreshToken %></div>
-</div>
-<div style="
-    color: #ff671b;
-    font-style: italic;
-    font-size: smaller;
-    margin-top: 20px
-">Keep your JWTs in secret. Do not share.</div>
-<br/>
-<div><strong>Network Name:</strong>&nbsp;<%= network.name %></div>
+        <div class="playground-details__item">
+            <h2 class="details__heading">
+                JWTs
+            </h2>
+            <div class="details__warning">
+                Keep your JWTs in secret. Do not share.
+            </div>
+            <div class="details__tabs" id="detailsTabs">
 
+                <div class="details__panel details__tab hasCopy">
+                    <div class="tab">
+                        <div class="tab__btn">
+                            <span class="tab__btn__icon svg-icon svg-close">
 
-<br/>
-<div><strong>Admin Console:</strong>&nbsp;
-    <a target="_blank" href="<%= admin %>?deviceHiveToken=<%= accessTokenEncoded %>#devices"><%= admin %></a>
-</div>
-<div><strong>Dashboard:</strong>&nbsp;
-    <a target="_blank" href="<%= dashboard %>"><%= dashboard %></a>
-</div>
-<div><strong>API Console:</strong>&nbsp;
-    <a target="_blank" href="<%= swagger %>"><%= swagger %></a>
-</div>
+                            </span>
+                        </div>
+                        <h3 class="tab__heading">
+                            <span class="copy__heading">
+                                Access-JWT
+                            </span>
+                            <div class="copy">
+                                <div>
+                                    <span class="copy__icon copyBtn svg-icon svg-copy"></span>
+                                    <span class="copy__hint">Copy to clipboard</span>
+                                </div>
+                            </div>
+                        </h3>
+                        <div class="tab__content">
+                            <code id="access-jwt">
+<%= accessToken %>
+                            </code>
+                        </div>
+                    </div>
+                </div>
+                <div class="details__panel details__tab hasCopy">
+                    <div class="tab">
+                        <div class="tab__btn">
+                            <span class="tab__btn__icon svg-icon svg-close">
 
-<br/>
+                            </span>
+                        </div>
+                        <h3 class="tab__heading">
+                            <span class="copy__heading">
+                                Refresh-JWT
+                            </span>
+                            <div class="copy">
+                                <div>
+                                    <span class="copy__icon copyBtn svg-icon svg-copy"></span>
+                                    <span class="copy__hint">Copy to clipboard</span>
+                                </div>
+                            </div>
+                        </h3>
+                        <div class="tab__content">
+                            <code id="refresh-jwt">
+<%= refreshToken %>
+                            </code>
+                        </div>
+                    </div>
+                </div>
 
-<h5 style="text-align: left">Register Device using cURL:</h5>
-<code style="word-wrap:break-word; display:block;white-space:pre-wrap; text-align: left; color: #666; background-color: inherit;">curl -X PUT \
+            </div>
+        </div>
+
+        <div class="playground-details__item playground-details__item_networks">
+            <h2 class="details__heading">
+                Networks
+            </h2>
+            <div class="details__panel">
+                <p class="networks__id">
+                    <strong>Network Name</strong>: <%= network.name %>
+                </p>
+                <p class="networks__id">
+                    <strong>Default Network ID</strong>: <%= network.id %>
+                </p>
+                <p class="networks__id">
+                    <strong>Available Network IDs</strong>: <%= networkIds.join(", ") %>
+                </p>
+            </div>
+
+            <div class="details__networks">
+                <div class="details__network">
+                    <a class="network__link" target="_blank" href="<%= admin %>?deviceHiveToken=<%= accessTokenEncoded %>#devices">
+                        <div class="network__icon svg-icon svg-admin-console"></div>
+                        <div class="network__name">
+                            Admin Console
+                        </div>
+                    </a>
+                </div>
+                <div class="details__network">
+                    <a class="network__link" target="_blank" href="<%= dashboard %>">
+                        <div class="network__icon svg-icon svg-dashboard"></div>
+                        <div class="network__name">
+                            Dashboard
+                        </div>
+                    </a>
+                </div>
+                <div class="details__network">
+                    <a class="network__link" target="_blank" href="<%= swagger %>">
+                        <div class="network__icon svg-icon svg-api-console"></div>
+                        <div class="network__name">
+                            API Console
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="playground-details__item hasCopy">
+            <h2 class="details__heading">
+                <span class="copy__heading">
+                    Register Device using cURL
+                </span>
+                <div class="copy move-on-mobile">
+                    <div>
+                        <span class="copy__icon copyBtn svg-icon svg-copy"></span>
+                        <span class="copy__hint">Copy to clipboard</span>
+                    </div>
+                </div>
+            </h2>
+            <div class="details__panel">
+                <code>curl -X PUT \
     -H "Authorization: Bearer <%= accessToken %>" \
     -H "Content-Type: application/json" \
-    -d '{"name" : "<%= uniqueDeviceName %>"}' \
+    -d '{"name" : "<%= uniqueDeviceName %>", "networkId" : "<%= network.id %>"}' \
     '<%= api %>/device/<%= uniqueDeviceName %>'
-</code>
+                </code>
+            </div>
+        </div>
+        <div id="copyMsg">
+
+        </div>
+    </div>
+</div>
+
