@@ -54,6 +54,7 @@ module.exports.info = function (req, res) {
 
         },
         error: function (result) {
+            console.log(result);
             res.status(500).send({error: result.message});
         }
     };
