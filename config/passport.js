@@ -1,22 +1,31 @@
 var GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 var GithubStrategy = require("passport-github2").Strategy;
 var FacebookStrategy = require("passport-facebook").Strategy;
+var Intercom = require('intercom-client');
 var config = require('./api.js');
 
-module.exports = function(passport) {
+//test app
+var client = new Intercom.Client({ token: process.env.INTERCOM_ACCESS_TOKEN || 'intercom_access_token'});
 
+module.exports = function(passport) {
     // used to serialize the user for the session
     passport.serializeUser(function(user, done) {
-        if (typeof user.emails !== "undefined" && typeof user.emails[0] !== "undefined") { // Serialize by primary public email
-            done(null, user.emails[0].value);
-        } else {
-            done(null, user.id); // Serialize by id
-        }
+
+        // writing users into Intercom list
+        var newUser = {
+            name: user.username || user.login,
+            user_id: user.id,
+            email: (typeof user.emails !== "undefined" && typeof user.emails[0] !== "undefined") ? user.emails[0].value : user.id
+        };
+
+        client.users.create(newUser);
+
+        done(null, newUser);
     });
 
     // used to deserialize the user
-    passport.deserializeUser(function(email, done) {
-        done(null, email);
+    passport.deserializeUser(function(user, done) {
+        done(null, user);
     });
 
     passport.use(new GoogleStrategy({

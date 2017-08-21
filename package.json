@@ -14,6 +14,7 @@
     "express-session": "latest",
     "faker": "^3.0.1",
     "hashids": "^1.0.2",
+    "intercom-client": "^2.8.8",
     "lodash": "^3.10.1",
     "morgan": "~1.6.1",
     "passport": "latest",
@@ -21,9 +22,9 @@
     "passport-github2": "^0.1.10",
     "passport-google-oauth": "latest",
     "promise": "^7.0.4",
+    "randomstring": "^1.1.5",
     "request-promise": "^0.4.3",
-    "serve-favicon": "~2.3.0",
-    "randomstring": "^1.1.5"
+    "serve-favicon": "~2.3.0"
   },
   "license": "MIT"
 }
