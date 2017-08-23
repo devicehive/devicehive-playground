@@ -22,8 +22,11 @@ var faker = require('faker');
 module.exports.info = function (req, res) {
 
     var callback = {
-        success: function (data) {
-            try{
+        success: function (result) {
+
+            var data = result.data;
+
+            try {
                 if (data.email) {
                     var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
                     var info = {
@@ -37,29 +40,38 @@ module.exports.info = function (req, res) {
                         refreshTokenEncoded: encodeURIComponent(data.jwt.refreshToken),
                         network: data.network,
                         networkIds: data.networkIds,
-                        uniqueDeviceName: faker.internet.domainWord() + '-' + faker.random.number()
+                        uniqueDeviceName: faker.internet.domainWord() + '-' + faker.random.number(),
+                        user: result.user
                     };
                     res.cookie('DeviceHiveToken', data.jwt.accessToken);
                     res.render('info', info);
                 } else {
                     res.status(403).send('Your access key has expired. Please re-login.');
                 }
-            } catch(err){
+            } catch (err) {
                 res.status(500).send(err);
             }
 
         },
-        error: function (data) {
-            console.log(data);
-            res.status(500).send({error:data.message});
+        error: function (result) {
+            console.log(result);
+            res.status(500).send({error: result.message});
         }
     };
 
-     api.getAdminToken(req.user)
+    var login = req.user ? req.user.email : undefined;
+
+    api.getAdminToken(login)
         .then(api.getUserByEmail)
         .then(api.getNetwork)
         .then(api.assignNetwork)
         .then(api.getJWT)
+        .then(function (data) {
+             return {
+                 data: data,
+                 user: req.user
+             };
+        })
         .then(callback.success)
         .catch(callback.error);
 };

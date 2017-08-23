@@ -150,3 +150,11 @@
     </div>
 </div>
 
+<script>
+    window.Intercom('boot', {
+        name: '<%= user.name %>',
+        user_id:  '<%= user.user_id %>',
+        email: '<%= user.email %>'
+    });
+</script>
+
