@@ -39,4 +39,5 @@ RUN mkdir -p /home/app/freeboard/dashboard \
 
 # register playground website in nginx
 ADD playground.conf /etc/nginx/sites-enabled/playground.conf
+ADD perl-variables.conf /etc/nginx/conf.d/perl-variables.conf
 ADD nginx-env.conf /etc/nginx/main.d/nginx-env.conf
