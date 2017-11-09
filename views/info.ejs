@@ -46,9 +46,7 @@
                             </div>
                         </h3>
                         <div class="tab__content">
-                            <code id="access-jwt">
-<%= accessToken %>
-                            </code>
+                            <code class="code" id="access-jwt"><%= accessToken %></code>
                         </div>
                     </div>
                 </div>
@@ -74,9 +72,7 @@
                             </div>
                         </h3>
                         <div class="tab__content">
-                            <code id="refresh-jwt">
-<%= refreshToken %>
-                            </code>
+                            <code class="code" id="refresh-jwt"><%= refreshToken %></code>
                         </div>
                     </div>
                 </div>
@@ -148,6 +144,11 @@
     -d '{"name" : "<%= uniqueDeviceName %>", "networkId" : "<%= network.id %>"}' \
     '<%= api %>/device/<%= uniqueDeviceName %>'
                 </code>
+                <div class="hidden code">curl -X PUT \
+-H "Authorization: Bearer <%= accessToken %>" \
+-H "Content-Type: application/json" \
+-d '{"name" : "<%= uniqueDeviceName %>", "networkId" : "<%= network.id %>"}' \
+'<%= api %>/device/<%= uniqueDeviceName %>'</div>
             </div>
         </div>
         <div id="copyMsg">
