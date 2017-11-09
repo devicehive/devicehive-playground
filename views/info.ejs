@@ -138,17 +138,11 @@
                 </div>
             </h2>
             <div class="details__panel">
-                <code>curl -X PUT \
+                <code class="code">curl -X PUT \
     -H "Authorization: Bearer <%= accessToken %>" \
     -H "Content-Type: application/json" \
     -d '{"name" : "<%= uniqueDeviceName %>", "networkId" : "<%= network.id %>"}' \
-    '<%= api %>/device/<%= uniqueDeviceName %>'
-                </code>
-                <div class="hidden code">curl -X PUT \
--H "Authorization: Bearer <%= accessToken %>" \
--H "Content-Type: application/json" \
--d '{"name" : "<%= uniqueDeviceName %>", "networkId" : "<%= network.id %>"}' \
-'<%= api %>/device/<%= uniqueDeviceName %>'</div>
+    '<%= api %>/device/<%= uniqueDeviceName %>'</code>
             </div>
         </div>
         <div id="copyMsg">
