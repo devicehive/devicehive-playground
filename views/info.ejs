@@ -98,10 +98,18 @@
 
             <div class="details__networks">
                 <div class="details__network">
-                    <a class="network__link track-link" target="_blank" href="<%= admin %>/jwt/<%= accessTokenEncoded %>">
+                    <a class="network__link track-link" target="_blank" href="<%= admin %>?deviceHiveToken=<%= accessTokenEncoded %>#devices">
                         <div class="network__icon svg-icon svg-admin-console"></div>
                         <div class="network__name">
                             Admin Console
+                        </div>
+                    </a>
+                </div>
+                <div class="details__network">
+                    <a class="network__link track-link" target="_blank" href="<%= adminAngular %>/jwt/<%= accessTokenEncoded %>">
+                        <div class="network__icon svg-icon svg-admin-console"></div>
+                        <div class="network__name">
+                            Angular Admin Console
                         </div>
                     </a>
                 </div>
