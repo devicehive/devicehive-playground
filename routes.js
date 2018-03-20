@@ -32,7 +32,7 @@ module.exports.info = function (req, res) {
                     var info = {
                         swagger: url.resolve(fullUrl, config.url + 'api/swagger'),
                         api: url.resolve(fullUrl, config.url + 'api/rest'),
-                        admin: url.resolve(fullUrl, config.url + 'admin'),
+                        adminAngular: url.resolve(fullUrl, config.url + 'admin'),
                         dashboard: url.resolve(fullUrl, config.url + 'grafana'),
                         accessToken: data.jwt.accessToken,
                         refreshToken: data.jwt.refreshToken,
