@@ -1,4 +1,4 @@
-FROM phusion/passenger-nodejs:0.9.25
+FROM phusion/passenger-nodejs:0.9.29
 
 ARG SOURCE_REPOSITORY_URL
 ARG SOURCE_BRANCH
