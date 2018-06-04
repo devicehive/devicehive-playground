@@ -1,0 +1,82 @@
+//**
+// Project Mixins
+//**
+
+// Clear after floats
+@mixin clearfix {
+  zoom: 1;
+
+  &:before,
+  &:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+// Apply clearfix to this classes by default
+.clearfix,
+.group {
+  @include clearfix;
+}
+
+// Responsive mixins
+@mixin responsive($res) {
+  @media screen and (max-width: $res) {
+    @content;
+  }
+}
+
+@mixin mobilefirst($res) {
+  @media screen and (min-width: $res) {
+    @content;
+  }
+}
+
+@mixin background-image-retina($file, $type, $width: auto, $height: auto) {
+  background-image: url($file + '.' + $type);
+  background-repeat: no-repeat;
+  @media only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (-moz-min-device-pixel-ratio: 2),
+  only screen and (-o-min-device-pixel-ratio: 2/1),
+  only screen and (min-device-pixel-ratio: 2),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx){
+    & {
+      background-image: url($file + '@2x.' + $type);
+      -webkit-background-size: $width $height;
+      -moz-background-size: $width $height;
+      -o-background-size: $width $height;
+      background-size: $width $height;
+    }
+  }
+  @media only screen and (-webkit-min-device-pixel-ratio: 3),
+  only screen and (-moz-min-device-pixel-ratio: 3),
+  only screen and (-o-min-device-pixel-ratio: 3/1),
+  only screen and (min-device-pixel-ratio: 3),
+  only screen and (min-resolution: 288dpi),
+  only screen and (min-resolution: 3dppx){
+    & {
+      background-image: url($file + '@3x.' + $type);
+      -webkit-background-size: $width $height;
+      -moz-background-size: $width $height;
+      -o-background-size: $width $height;
+      background-size: $width $height;
+    }
+  }
+}
+
+/**
+ * hiding text
+ */
+
+@mixin hidden-text {
+  overflow: hidden;
+  text-indent: -9999px;
+}
+

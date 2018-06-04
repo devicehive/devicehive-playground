@@ -1,0 +1,481 @@
+html{
+  height: 100%;
+}
+
+body {
+  font-family: $open-sans;
+  font-size: $font-size;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.6;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -webkit-backface-visibility: hidden;
+
+  .playground{
+    display: block;
+    transition: filter .2s ease-in-out;
+  }
+
+  &.mobile-menu-visible{
+    overflow: hidden !important;
+    .playground{
+      filter: blur(2px);
+    }
+  }
+
+}
+
+h1 {
+  font-size: 3.5em;
+  margin: 0;
+  line-height: 1.25;
+  font-weight: 300;
+}
+
+h2 {
+  font-size: 1.125em;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 26px;
+  font-weight: 400;
+}
+
+
+p {
+  margin: 0 0 $padding/2;
+}
+
+code{
+  line-height: 1.43;
+  color: #396573;
+  font-size: 1.077em;
+  word-break: break-all;
+  white-space: pre-wrap;
+  display: block;
+}
+
+.hidden{
+  visibility: hidden;
+  height: 0;
+  line-height: 0;
+  overflow: hidden;
+}
+
+//**
+// Media
+//**
+
+img,
+video,
+audio,
+iframe,
+object {
+  max-width: 100%;
+}
+
+.container{
+  max-width: $desktop;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 3;
+  height: 88px;
+  transition: background-color .2s ease-in-out;
+
+  &.bg-header{
+    background-color: #133048;
+
+    .mobile-btn__icon{
+      span,
+      &:before,
+      &:after{
+        background-color: #fff;
+      }
+    }
+
+    .header__logo__img{
+      background-position: 0 0;
+    }
+
+    .nav__link {
+      color: rgba(255,255,255,0.7);
+      transition: color .2s ease-in-out;
+
+      &:hover,
+      &:focus,
+      &:active,
+      &.active {
+        color: #fff;
+      }
+    }
+
+  }
+
+
+  &__logo{
+    margin-top: 20px;
+    width: 160px;
+    height: 48px;
+    display: inline-block;
+    margin-left: 30px;
+
+    @include responsive($desktop-medium){
+      margin-top: 14px;
+      margin-left: 20px;
+    }
+
+    &__img{
+      width: 160px;
+      height: 48px;
+      display: inline-block;
+      @include background-image-retina('/img/logos', png, 160px, 163px);
+      background-position: 0 -48px;
+    }
+  }
+}
+
+.footer {
+  background-color: #133048;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px 0 10px;
+  z-index: 2;
+
+  &__body {
+    padding: 0 $padding;
+    overflow: hidden;
+  }
+
+  &__left {
+    float: left;
+
+    @include responsive($desktop-medium){
+      .footer__hint{
+        display: none;
+      }
+    }
+  }
+
+  &__right {
+    float: right;
+    @include mobilefirst($desktop-medium){
+      width: 425px;
+    }
+  }
+
+  &__links {
+    list-style-type: none;
+    overflow: hidden;
+    margin: 0 0 0 -10px;
+    padding: 0;
+    li {
+      float: left;
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      @include responsive($tablet){
+        margin-right: 0;
+      }
+    }
+    @include responsive(380px){
+      li{
+        width: 34px;
+        a{
+          transform: scale(0.85);
+        }
+      }
+    }
+  }
+
+  &__link {
+    display: inline-block;
+  }
+
+  &__copyright {
+    color: #fff;
+    font-size: 0.688em;
+    margin-top: 3px;
+  }
+
+  &__hint {
+    color: $white;
+    margin-bottom: 24px;
+    font-size: 0.875em;
+
+    &_mobile {
+      font-size: 1.25em;
+      display: none;
+    }
+
+    @include responsive($tablet) {
+      &_desktop {
+        display: none;
+      }
+
+      &_mobile {
+        display: block;
+      }
+    }
+
+  }
+
+  .footer-form {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 24px;
+
+    input[type=email] {
+      width: 280px;
+      margin-right: 15px;
+      float: left;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: solid 1px rgba(255, 255, 255, 0.15);
+    }
+
+    .footer__submit-btn {
+      height: 40px;
+      width: 130px;
+      float: left;
+      line-height: 40px;
+      @extend %btn-blue;
+
+      @include responsive($tablet) {
+        width: 120px;
+      }
+    }
+  }
+
+  @include responsive($desktop-lg) {
+    &__body {
+      padding: 0 30px;
+    }
+  }
+
+  @include responsive($desktop-medium) {
+    &__left {
+      float: none;
+      padding-bottom: 90px;
+    }
+
+    &__right {
+      float: none;
+    }
+
+    &__links {
+      position: absolute;
+      bottom: 24px;
+    }
+
+    &__hint {
+      margin-bottom: 20px;
+      margin-top: 8px;
+    }
+  }
+
+  @include responsive($mobile) {
+    .footer-form {
+      input[type=email] {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      label.error {
+        top: 40px;
+      }
+
+    }
+  }
+
+  .contact-mail {
+    margin-top: 0;
+    font-size: 0.875em;
+    padding-bottom: 23px;
+    color: #fff;
+
+    &__link {
+      font-style: italic;
+      text-decoration: none;
+      color: #fff;
+
+      &:hover{
+        text-decoration: underline;
+      }
+
+      @include responsive($tablet) {
+        font-style: normal;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.playground{
+  @include mobilefirst($tablet){
+    @include background-image-retina('/img/pttrn', jpg, 100%, 100%);
+    background-size: cover;
+    background-position: center center;
+  }
+  @include background-image-retina('/img/photo', jpg, 100%, 100%);
+  background-size: cover;
+  background-position: center center;
+
+  &__container{
+    box-sizing: border-box;
+    min-height: 100vh;
+    padding: 80px 0 196px;
+    height: 100%;
+    width: 100%;
+    @include mobilefirst($tablet) {
+      display: table;
+    }
+
+    @include responsive($desktop-medium) {
+      padding-bottom: 328px;
+    }
+
+    @include responsive($mobile) {
+      padding-bottom: 420px;
+    }
+  }
+
+  &__body{
+    color: $main-blue;
+    display: block;
+    box-sizing: border-box;
+    padding: 0 20px;
+
+    @include mobilefirst($tablet){
+      margin-top: 86px;
+    }
+
+    &__inner{
+      max-width: 980px;
+      margin: 0 auto;
+      position: relative;
+    }
+  }
+
+  &__heading{
+    padding: 0 20px;
+  }
+
+  &__h1{
+    line-height: 1.25;
+    font-size: 3.5em;
+    color: $main-blue;
+    max-width: 755px;
+  }
+
+  &__description{
+    margin: 28px 0 54px;
+    line-height: 1.39;
+    font-size: 1.125em;
+    font-weight: 400;
+    color: $main-blue;
+    max-width: 755px;
+  }
+
+  @include responsive($tablet){
+    &__container{
+      height: auto;
+      display: block;
+    }
+
+    &__h1{
+      font-size: 2.25em;
+      line-height: 1.25;
+      text-align: center;
+      margin-top: 7px;
+    }
+
+    &__description{
+      font-size: 0.875em;
+      line-height: 1.43;
+      text-align: center;
+      margin: 16px 0 24px;
+    }
+  }
+
+}
+
+.playground__logout {
+  color: $link-color;
+  line-height: 1.56;
+  font-size: 1em;
+  text-decoration: none;
+  padding: 10px 0 10px;
+  position: absolute;
+  top: 28px;
+  right: 20px;
+  &:hover {
+    text-decoration: none;
+  }
+
+  .logout__icon {
+    margin: 2px 0 0 10px;
+    float: right;
+  }
+
+  @include responsive($desktop-medium) {
+    float: left;
+    padding: 20px 30px;
+    margin: 0;
+
+    .logout__icon {
+      margin-top: 5px;
+    }
+  }
+}
+
+#subscribedMsg{
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 78px;
+  width: 240px;
+  padding: 14px 20px;
+  border-radius: 2px;
+  background-color: rgba(0,25,46,0.76);
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.2);
+  font-size: 0.875em;
+  color: #fff;
+  z-index: 10000;
+
+  @include responsive($mobile){
+    right: 30px;
+    width: 190px;
+    bottom: 200px;
+  }
+}
+
+@include responsive($mobile){
+  #intercom-container {
+    .intercom-launcher-frame,
+    .intercom-launcher-badge-frame,
+    .intercom-messenger-frame {
+      top: calc(100vh - 130px) !important;
+      left: calc(100% - 70px) !important;
+    }
+  }
+}
+
+

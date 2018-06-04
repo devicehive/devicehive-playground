@@ -1,0 +1,197 @@
+//**
+// Homepage
+//**
+
+.playground_login{
+
+  .sign-in{
+    padding: 0 20px;
+
+    &__content{
+      padding: 36px 0;
+      background: $white;
+      border-radius: $btn-br;
+      box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.02);
+      margin-bottom: 15px;
+      width: 100%;
+    }
+
+    &__heading{
+      padding: 0 50px;
+
+      &_lg{
+        font-size: 1.5em;
+        line-height: 1.25;
+        margin-bottom: 4px;
+      }
+
+      &_sm{
+        font-size: 0.875em;
+        line-height: 2.14em;
+      }
+    }
+
+    &__btns{
+      overflow: hidden;
+      padding: 20px 50px 35px;
+      list-style-type: none;
+      margin: 0;
+    }
+
+    &__item{
+      float: left;
+      padding-right: 30px;
+      width: 33.33%;
+      box-sizing: border-box;
+
+      &:last-child{
+        padding-right: 0;
+      }
+    }
+
+    &__btn{
+      color: $white;
+
+      .btn-icon{
+        float: left;
+        margin-top: 5px;
+      }
+
+      &.google-btn{
+        @extend %sign-in-btn;
+        background-color: #eb5424;
+
+        &:active{
+          background-color: #cf3511;
+        }
+      }
+
+      &.github-btn{
+        @extend %sign-in-btn;
+        background-color: #333;
+
+        &:active{
+          background-color: #1c1a1a;
+        }
+      }
+
+      &.fb-btn{
+        @extend %sign-in-btn;
+        background-color: #3b5998;
+
+        &:active{
+          background-color: #1a3c82;
+        }
+      }
+    }
+
+
+    @include responsive($tablet){
+      padding: 20px 0 45px;
+      margin: 0 0 70px;
+
+      &__heading{
+        padding: 0 36px;
+        text-align: center;
+
+        &_lg{
+          font-size: 1.25em;
+          line-height: 1.25;
+        }
+      }
+
+      &__btns{
+        padding: 16px 36px 0;
+      }
+
+      &__item{
+        float: none;
+        width: 100%;
+        margin: 0 auto 10px;
+        padding: 0;
+        max-width: 320px;
+
+        &:last-child{
+          margin-bottom:0;
+        }
+      }
+    }
+
+  }
+  .loading{
+    display: none;
+    text-align: center;
+  }
+
+  #playground-relogin {
+    display: none;
+    padding: 0 20px 20px;
+
+    #key-expired,
+    #server-error{
+        display: none;
+    }
+
+    .relogin {
+      &__heading {
+        line-height: 1.25;
+        font-size: 1.5em;
+        margin: 0 0 6px 0;
+      }
+
+      &__description {
+        font-size: 0.875em;
+        margin-bottom: 25px;
+
+        .relogin__warning {
+          color: #fd6519;
+        }
+      }
+
+      &__panel {
+        padding: 36px;
+        max-width: 420px;
+        background: #fff;
+        border-radius: 2px;
+        box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.06);
+      }
+
+      &__link{
+        @extend %btn-blue;
+        width: 200px;
+        height: 50px;
+        line-height: 50px;
+        padding: 0 45px 0 0;
+
+        .logout__icon{
+          float: left;
+          margin: 5px 0 0 5px;
+        }
+      }
+
+      @include responsive($tablet){
+        &__heading{
+          font-size: 1.125em;
+          line-height: 1.25;
+        }
+
+        &__panel{
+          text-align: center;
+          padding: 30px;
+          max-width: 100%;
+        }
+
+        &__link{
+          width: 100%;
+          max-width: 320px;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+
+}
+
+
+
+
