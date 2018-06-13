@@ -1,0 +1,86 @@
+//**
+// Buttons
+//**
+
+// Buttons colors blue palette
+$blue-btn-bg-color:  #1284e3;
+$blue-btn-bg-hover: #309af1;
+$blue-btn-bg-active: #0472cd;
+$blue-btn-bg-disabled: #5f95c3;
+$blue-btn-color-disabled: #9fbcd4;
+
+
+// Default button styles
+%sign-in-btn {
+  $btn-height: 50px;
+
+  border-radius: $btn-br;
+  border: none;
+  height: $btn-height;
+  line-height: $btn-height;
+  display: block;
+  font-size: 0.938em;
+  outline: none;
+  padding: 0 40px 0 7px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: capitalize;
+  box-sizing: border-box;
+  position: relative;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color .2s ease-in-out,
+              background-color .2s ease-in-out,
+              box-shadow .2s ease-in-out;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+  }
+
+  &:active{
+    box-shadow: none;
+  }
+}
+
+// Default button styles
+%btn-blue {
+  border-radius: $btn-br;
+  background-color: $blue-btn-bg-color;
+  border: none;
+  color: $white;
+  display: inline-block;
+  font-size: 0.938em;
+  outline: none;
+  padding: 0 10px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: capitalize;
+  box-sizing: border-box;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color .2s ease-in-out,
+  background-color .2s ease-in-out,
+  box-shadow .2s ease-in-out;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.34);
+    text-decoration: none;
+    background-color: $blue-btn-bg-hover;
+  }
+
+  &:active {
+    background-color: rgba(18, 132, 227, 0.13);
+  }
+
+  &[disabled],
+  &.disabled{
+    background-color: $blue-btn-bg-disabled;
+    color: $blue-btn-color-disabled;
+  }
+}
+
+
+

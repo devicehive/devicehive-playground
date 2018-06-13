@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./app.js"
+    "start":" npm run build && npm run serve",
+    "serve": "node ./app.js",
+    "build": "gulp"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -17,6 +19,7 @@
     "intercom-client": "^2.8.8",
     "lodash": "^3.10.1",
     "morgan": "~1.6.1",
+    "normalize-scss": "^7.0.1",
     "passport": "latest",
     "passport-facebook": "^2.1.1",
     "passport-github2": "^0.1.10",
@@ -26,5 +29,12 @@
     "request-promise": "^0.4.3",
     "serve-favicon": "~2.3.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-csso": "^3.0.1",
+    "gulp-minify": "^3.0.2",
+    "gulp-sass": "^4.0.1"
+  }
 }
