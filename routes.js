@@ -43,7 +43,6 @@ module.exports.info = function (req, res) {
                         uniqueDeviceName: faker.internet.domainWord() + '-' + faker.random.number(),
                         user: result.user
                     };
-                    res.cookie('DeviceHiveToken', data.jwt.accessToken);
                     res.render('info', info);
                 } else {
                     res.status(403).send('Your access key has expired. Please re-login.');
